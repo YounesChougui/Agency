@@ -1,189 +1,201 @@
-/* =================================== */
-/* ==   SERVICE PAGE STYLES         == */
-/* =================================== */
+/*
+=================================================
+==  DYNAMIC SERVICE PAGE STYLES V2             ==
+==  Crafted with 20 years of design expertise  ==
+=================================================
+*/
 
-/* --- Hero Section --- */
-.service-hero {
-    background-color: var(--bg-secondary-color);
-    padding: 100px 0;
+/* ===== 1. DYNAMIC HERO SECTION ===== */
+.dynamic-hero {
+    position: relative;
+    padding: 120px 0;
+    overflow: hidden;
+    background: var(--bg-secondary-color);
     text-align: center;
 }
 
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
+.hero-background-shapes {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(45deg, var(--primary-color), #007bff);
+    animation: gradient-flow 15s ease infinite;
+    opacity: 0.1;
 }
 
-.hero-title {
-    font-size: 3.5rem;
+@keyframes gradient-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.dynamic-hero .hero-title {
+    font-size: clamp(2.5rem, 8vw, 5rem); /* Responsive font size */
     color: var(--heading-color);
+    line-height: 1.1;
+    margin-bottom: 25px;
 }
 
-.hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--text-color);
-    margin: 20px 0 40px;
-    line-height: 1.6;
+.hero-title span {
+    display: block;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: text-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* --- Key Features Section --- */
-.key-features {
-    padding: 80px 0;
+/* Staggered animation delay */
+.hero-title span:nth-child(2) { animation-delay: 0.2s; }
+.hero-title span:nth-child(3) { animation-delay: 0.4s; }
+
+.dynamic-hero .hero-subtitle {
+    font-size: 1.2rem;
+    max-width: 650px;
+    margin: 0 auto 40px;
+    animation-delay: 0.6s;
 }
 
-.features-grid {
+.dynamic-hero .btn {
+    animation-delay: 0.8s;
+}
+
+@keyframes text-reveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: text-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ===== 2. INTERACTIVE SHOWCASE ===== */
+.interactive-showcase {
+    padding: 100px 0;
+}
+
+.showcase-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
-    margin-top: 60px;
 }
 
-.feature-card {
+.showcase-card {
     background-color: var(--bg-color);
     border: 1px solid var(--border-color);
-    padding: 30px;
+    padding: 40px 30px;
     border-radius: 12px;
     text-align: center;
+    transform: translateY(0);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.feature-icon {
-    font-size: 2.5rem;
+.showcase-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px -12px var(--shadow-color);
+}
+
+.showcase-icon {
+    font-size: 3rem;
     color: var(--primary-color);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.feature-card h4 {
+.showcase-card:hover .showcase-icon {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+.showcase-card h4 {
     font-size: 1.3rem;
+    margin-bottom: 15px;
     color: var(--heading-color);
-    margin-bottom: 10px;
 }
 
-/* --- Process Section --- */
-.process-section {
-    padding: 80px 0;
+/* ===== 3. PORTFOLIO SLIDESHOW ===== */
+.portfolio-section {
+    padding: 100px 0;
     background-color: var(--bg-secondary-color);
 }
 
-.process-timeline {
-    max-width: 800px;
-    margin: 60px auto 0;
-    position: relative;
-    /* The vertical line for the timeline */
-    border-left: 2px solid var(--primary-color);
-    padding: 0 20px;
-}
-
-.process-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 25px;
-    position: relative;
-    padding-left: 40px;
-}
-
-.process-step:not(:last-child) {
-    margin-bottom: 50px;
-}
-
-.process-number {
-    position: absolute;
-    left: -24px; /* Center it on the timeline border */
-    top: 0;
-    width: 48px;
-    height: 48px;
-    background-color: var(--primary-color);
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1.25rem;
-    border: 4px solid var(--bg-secondary-color);
-}
-
-.process-content h4 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-/* --- CTA Banner --- */
-.cta-banner {
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 80px 0;
-    text-align: center;
-}
-
-.cta-banner h2 {
-    font-size: 2.5rem;
-    color: #fff;
-}
-
-.cta-banner p {
-    font-size: 1.15rem;
-    margin: 15px 0 30px;
-    opacity: 0.9;
-}
-
-.btn.btn-light {
-    background-color: #fff;
-    color: var(--primary-color);
-}
-.btn.btn-light:hover {
-    background-color: #f0f0f0;
-}
-
-
-/* --- FAQ Section --- */
-.faq-section {
-    padding: 80px 0;
-}
-
-.faq-accordion {
-    max-width: 800px;
-    margin: 60px auto 0;
-}
-
-.faq-item {
-    border-bottom: 1px solid var(--border-color);
-}
-
-.faq-question {
+.portfolio-slider {
     width: 100%;
+    height: 500px;
+    margin-top: 60px;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background-position: center;
+    background-size: cover;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 0;
-    background: none;
-    border: none;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--heading-color);
-    text-align: left;
-    cursor: pointer;
-}
-
-.faq-question i {
-    font-size: 1.5rem;
-    transition: transform 0.3s ease;
-}
-
-.faq-answer {
-    max-height: 0;
+    justify-content: center;
+    align-items: flex-end;
+    border-radius: 16px;
     overflow: hidden;
-    transition: max-height 0.4s ease-out;
 }
 
-.faq-answer p {
-    padding-bottom: 25px;
-    line-height: 1.7;
+.slide-content {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: #fff;
+    padding: 40px 20px;
+    width: 100%;
+    text-align: left;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-/* --- FAQ Active State --- */
-.faq-item.active .faq-question i {
-    transform: rotate(45deg);
+.swiper-slide-active .slide-content {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.3s;
 }
-.faq-item.active .faq-answer {
-    max-height: 200px; /* Adjust if your answers are longer */
+
+.slide-content h3 {
+    font-size: 1.8rem;
+    color: #fff;
 }
+
+.swiper-pagination-bullet {
+    background: #fff;
+    opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--primary-color);
+    opacity: 1;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: #fff;
+    background-color: rgba(0,0,0,0.3);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.swiper-button-next::after, .swiper-button-prev::after {
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+
+/* ===== SHARED ANIMATION CLASS ===== */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger children animations */
+.animate-on-scroll.is-visible .showcase-card:nth-child(1) { transition-delay: 0.1s; }
+.animate-on-scroll.is-visible .showcase-card:nth-child(2) { transition-delay: 0.2s; }
+.animate-on-scroll.is-visible .showcase-card:nth-child(3) { transition-delay: 0.3s; }
+.animate-on-scroll.is-visible .showcase-card:nth-child(4) { transition-delay: 0.4s; }
