@@ -191,6 +191,10 @@ section {
    FINAL Services Section Styling
    ================================== */
 /* =======================
+   New Alternating Feature Section (Services)
+   ======================== */
+
+/* =======================
    New Compact Service Card Grid
    ======================== */
 
@@ -280,6 +284,84 @@ section {
     transform: translateX(5px);
 }
 
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 50px; /* Space between text and image */
+    background-color: var(--bg-color); /* White/dark card background */
+    padding: 50px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    margin: 0 auto; /* Center the item */
+}
+
+/* Add margin between the feature items */
+.feature-item + .feature-item {
+    margin-top: 40px;
+}
+
+/* This reverses the order for the alternating effect */
+.feature-item-reverse {
+    flex-direction: row-reverse;
+}
+
+.feature-content, .feature-image {
+    flex: 1; /* Each takes up half the space */
+}
+
+.feature-content h3 {
+    font-size: 2.25rem;
+    color: var(--heading-color);
+    margin-bottom: 20px;
+}
+
+.feature-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.feature-image img {
+    width: 100%;
+    border-radius: 12px;
+    /* A subtle shadow to lift the image */
+    box-shadow: 0 10px 30px -10px var(--shadow-color);
+}
+
+/* The pill-shaped link from your design */
+.feature-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px; /* Space between text and arrow */
+    padding: 12px 24px;
+    border-radius: 50px; /* This creates the pill shape */
+    background-color: var(--bg-secondary-color);
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.feature-link:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* --- Responsive Design for Mobile --- */
+@media (max-width: 900px) {
+    .feature-item,
+    .feature-item-reverse {
+        /* Stack the columns on top of each other */
+        flex-direction: column;
+        gap: 40px;
+        padding: 40px 25px;
+        text-align: center;
+    }
+
+    .feature-content h3 {
+        font-size: 1.8rem;
+    }
+}
 
 /* About Section */
 /* =======================
