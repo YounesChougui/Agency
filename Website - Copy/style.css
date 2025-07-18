@@ -190,131 +190,95 @@ section {
 /* ==================================
    FINAL Services Section Styling
    ================================== */
-
 /* =======================
-   New Alternating Feature Section (Services)
+   New Compact Service Card Grid
    ======================== */
 
-.feature-section {
+.services-section {
     padding: 80px 0;
-    /* The design you sent has a light background between service blocks */
     background-color: var(--bg-secondary-color);
 }
 
-.feature-item {
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-subtitle {
+    max-width: 600px;
+    margin: 15px auto 0;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.services-grid {
+    display: grid;
+    /* This creates a responsive grid. It will fit as many 280px cards as it can. */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 35px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -15px var(--shadow-color);
+}
+
+.service-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    margin: 0 auto 25px;
     display: flex;
     align-items: center;
-    gap: 50px; /* Space between text and image */
-    background-color: var(--bg-color); /* White/dark card background */
-    padding: 50px;
-    border-radius: 16px;
-    border: 1px solid var(--border-color);
-    margin: 0 auto; /* Center the item */
-}
-
-/* Add margin between the feature items */
-.feature-item + .feature-item {
-    margin-top: 40px;
-}
-
-/* This reverses the order for the alternating effect */
-.feature-item-reverse {
-    flex-direction: row-reverse;
-}
-
-.feature-content, .feature-image {
-    flex: 1; /* Each takes up half the space */
-}
-
-.feature-content h3 {
-    font-size: 2.25rem;
-    color: var(--heading-color);
-    margin-bottom: 20px;
-}
-
-.feature-content p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 30px;
-}
-
-.feature-image img {
-    width: 100%;
-    border-radius: 12px;
-    /* A subtle shadow to lift the image */
-    box-shadow: 0 10px 30px -10px var(--shadow-color);
-}
-
-/* The pill-shaped link from your design */
-.feature-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px; /* Space between text and arrow */
-    padding: 12px 24px;
-    border-radius: 50px; /* This creates the pill shape */
+    justify-content: center;
     background-color: var(--bg-secondary-color);
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s, color 0.3s;
+    color: var(--primary-color);
+    font-size: 2.25rem;
 }
 
-.feature-link:hover {
-    background-color: var(--primary-color);
-    color: #fff;
-}
-
-/* --- Responsive Design for Mobile --- */
-@media (max-width: 900px) {
-    .feature-item,
-    .feature-item-reverse {
-        /* Stack the columns on top of each other */
-        flex-direction: column;
-        gap: 40px;
-        padding: 40px 25px;
-        text-align: center;
-    }
-
-    .feature-content h3 {
-        font-size: 1.8rem;
-    }
-}
-/* =======================
-   Individual Service Page Styling
-   ======================== */
-.service-detail-section {
-    padding: 80px 0;
-}
-
-.service-detail-intro {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 60px;
-    font-size: 1.1rem;
-}
-
-.service-detail-content img {
-    width: 100%;
-    border-radius: 12px;
-    margin-bottom: 40px;
-}
-
-.service-detail-content h3 {
-    font-size: 1.8rem;
+.service-card h4 {
+    font-size: 1.4rem;
     color: var(--heading-color);
     margin-bottom: 15px;
 }
 
-.service-detail-content ul {
-    list-style: none;
-    padding-left: 0;
+.service-card p {
+    color: var(--text-color);
+    line-height: 1.7;
+    /* This makes the card bodies equal height and pushes the link to the bottom */
+    flex-grow: 1; 
+    margin-bottom: 30px;
 }
 
-.service-detail-content ul li {
-    margin-bottom: 10px;
-    font-size: 1.1rem;
+.card-link {
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
+.card-link i {
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .card-link i {
+    transform: translateX(5px);
+}
 
 
 /* About Section */
