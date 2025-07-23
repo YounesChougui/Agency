@@ -163,29 +163,90 @@ body {
 [data-theme="light"] .theme-toggle-btn .ph-sun { display: block; }
 [data-theme="light"] .theme-toggle-btn .ph-moon { display: none; }
 
-/* =======================
-   Section Styling
-   ======================== */
-section {
-    padding: 80px 0;
+/* ===================================
+   CSS FOR UPGRADED HERO TRUST SIGNALS
+   =================================== */
+
+/* This makes the trust signals appear after the rest of the hero animates in */
+.dynamic-hero .hero-trust-signals {
+    animation-delay: 1.2s; /* Adjust as needed */
+    margin-top: 60px;
+    text-align: left;
+    background: rgba(0,0,0,0.1); /* Subtle background to pop */
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
 }
 
-/* Hero Section */
-.hero-section {
-    text-align: center;
-    padding: 120px 0;
+/* --- Star Rating Styles --- */
+.star-rating {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
 }
-.hero-headline {
-    font-size: 3.5rem;
+
+.star-rating .stars {
+    font-size: 1.5rem;
+    color: #FFC700; /* Gold color for stars */
+}
+.star-rating .stars i {
+    margin-right: 2px;
+}
+
+.star-rating span {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+
+/* --- Logo Scroller Styles --- */
+.logo-scroller {
+    width: 100%;
+    overflow: hidden;
+    /* This creates the fade-out effect on the sides */
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 20%, #000 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 20%, #000 80%, transparent);
+}
+
+.logo-scroller p {
+    font-weight: 600;
     color: var(--heading-color);
-    margin-bottom: 20px;
-}
-.hero-subheadline {
-    font-size: 1.25rem;
-    max-width: 700px;
-    margin: 0 auto 40px;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
+.logo-track {
+    display: flex;
+    gap: 50px;
+    /* This clones the content for a seamless loop */
+    animation: scroll-logos 20s linear infinite;
+}
+
+.logo-track i {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    flex-shrink: 0; /* Prevents logos from shrinking */
+    opacity: 0.8;
+}
+
+/* The scrolling animation */
+@keyframes scroll-logos {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* We duplicate the track content using a pseudo-element */
+.logo-track::after {
+    content: '';
+    display: flex;
+    gap: 50px;
+    /* This is a trick to clone the logos. Make sure it matches the icons in the HTML */
+    content: '\f3a1' '\f43b' '\f575' '\f2d2' '\f4c0' '\f3a8'; 
+    font-family: "Phosphor-Bold";
+    font-size: 2.5rem;
+    color: var(--text-color);
+}
 /* Services Section */
 /* ==================================
    FINAL Services Section Styling
@@ -640,87 +701,3 @@ section {
     }
 }
 
-/* ===================================
-   CSS FOR UPGRADED HERO TRUST SIGNALS
-   =================================== */
-
-/* This makes the trust signals appear after the rest of the hero animates in */
-.dynamic-hero .hero-trust-signals {
-    animation-delay: 1.2s; /* Adjust as needed */
-    margin-top: 60px;
-    text-align: left;
-    background: rgba(0,0,0,0.1); /* Subtle background to pop */
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 25px;
-}
-
-/* --- Star Rating Styles --- */
-.star-rating {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.star-rating .stars {
-    font-size: 1.5rem;
-    color: #FFC700; /* Gold color for stars */
-}
-.star-rating .stars i {
-    margin-right: 2px;
-}
-
-.star-rating span {
-    font-size: 1rem;
-    color: var(--text-color);
-}
-
-
-/* --- Logo Scroller Styles --- */
-.logo-scroller {
-    width: 100%;
-    overflow: hidden;
-    /* This creates the fade-out effect on the sides */
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 20%, #000 80%, transparent);
-    mask-image: linear-gradient(to right, transparent, #000 20%, #000 80%, transparent);
-}
-
-.logo-scroller p {
-    font-weight: 600;
-    color: var(--heading-color);
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.logo-track {
-    display: flex;
-    gap: 50px;
-    /* This clones the content for a seamless loop */
-    animation: scroll-logos 20s linear infinite;
-}
-
-.logo-track i {
-    font-size: 2.5rem;
-    color: var(--text-color);
-    flex-shrink: 0; /* Prevents logos from shrinking */
-    opacity: 0.8;
-}
-
-/* The scrolling animation */
-@keyframes scroll-logos {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-
-/* We duplicate the track content using a pseudo-element */
-.logo-track::after {
-    content: '';
-    display: flex;
-    gap: 50px;
-    /* This is a trick to clone the logos. Make sure it matches the icons in the HTML */
-    content: '\f3a1' '\f43b' '\f575' '\f2d2' '\f4c0' '\f3a8'; 
-    font-family: "Phosphor-Bold";
-    font-size: 2.5rem;
-    color: var(--text-color);
-}
