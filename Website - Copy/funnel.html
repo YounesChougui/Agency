@@ -2,18 +2,20 @@
 <html lang="en">
 <head>
     <!-- 
-        Chosen Palette: Midnight & Gold
-        Application Structure Plan: The SPA retains the successful 7-step linear funnel structure. However, it's enhanced with a persistent progress bar to improve user orientation and motivation. The core enhancement is in the "feel" of the application. Instead of static slides, each step is a dynamic "scene" with animated entrances for text and UI elements, and fluid transitions between scenes. This creates a premium, narrative-driven experience that guides the user more effectively than a basic click-through funnel.
-        Visualization & Content Choices: The core content and branching logic are the same, but the presentation is elevated.
-        - All Slides: Use dynamic, animated entrances for text and images to create a more engaging, cinematic feel.
-        - Transitions: A custom slide-up-and-fade transition is used instead of a simple fade, making the flow feel more connected and fluid.
-        - Progress Bar: A new UI element was added to visually communicate progress, a key UX principle for multi-step forms.
-        - Micro-interactions: Buttons and inputs have enhanced hover and focus states with subtle animations (scale, shimmer, glow) to make the interface feel more responsive and satisfying to use.
+        Chosen Palette: Digital Shift (derived from logo)
+        Application Structure Plan: The SPA retains the successful 7-step linear funnel structure. A new intermediate "validation" slide has been added between the offer and the form to enhance the user experience. The creative overhaul focuses on a highly dynamic and branded user experience. A custom particle network animation runs in the background, creating a sense of connectivity and technology. The UI palette is derived directly from the provided logo for brand cohesion. All animations and layouts are re-tested for a premium mobile-first experience.
+        Visualization & Content Choices: The core content remains, but the presentation is elevated.
+        - Background: A custom, lightweight particle network animation is implemented via HTML Canvas and JS for a unique, non-static visual experience.
+        - Logo: The client's logo is now a key part of the first and last slides, reinforcing brand identity.
+        - Transitions: The fluid slide-up-and-fade transitions are kept, now layered over the animated background for a more immersive effect.
+        - Micro-interactions: Button and input styles are updated to match the new "Digital Shift" color palette.
+        - Validation Screen: A new slide with a CSS loader simulates data processing, making the transition to the form feel more justified and intelligent.
+        - Form Redesign: Slide 6 is redesigned to match the user-provided layout, featuring a contained, icon-driven design for a professional feel.
         CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
     -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Ad Account Audit | Stellar Digital</title>
+    <title>Free Ad Account Audit | Shift</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,16 +23,17 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(-45deg, #1a202c, #2d3748, #4a5568);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background-color: #0d1117;
             color: #E2E8F0;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        #canvas-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
 
         .slide {
@@ -41,6 +44,10 @@
             visibility: hidden;
             transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0.6s;
             transform: translateY(20px);
+            display: flex; /* Changed from none to flex for centering */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .slide.active {
@@ -55,8 +62,8 @@
         }
 
         .btn {
-            background-color: #D69E2E; /* Gold Accent */
-            color: #1A202C;
+            background-color: #0052FF; /* Blue from Logo */
+            color: #FFFFFF;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -64,7 +71,7 @@
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(214, 158, 46, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 82, 255, 0.25);
         }
         
         .btn::before {
@@ -83,88 +90,89 @@
         }
 
         .choice-btn {
-            background-color: rgba(45, 55, 72, 0.5);
-            border: 1px solid #4A5568;
+            background-color: rgba(22, 27, 34, 0.7);
+            border: 1px solid #30363d;
             color: #E2E8F0;
-            backdrop-filter: blur(5px);
             transition: all 0.3s ease;
         }
 
         .choice-btn:hover {
-            background-color: rgba(74, 85, 104, 0.7);
-            border-color: #D69E2E;
+            background-color: rgba(36, 41, 47, 0.8);
+            border-color: #0052FF;
             transform: scale(1.03);
         }
 
         .input-field {
-            background-color: rgba(45, 55, 72, 0.5);
-            border: 1px solid #4A5568;
+            background-color: rgba(22, 27, 34, 0.7);
+            border: 1px solid #30363d;
             color: #E2E8F0;
         }
 
         .input-field:focus {
-            border-color: #D69E2E;
-            box-shadow: 0 0 0 3px rgba(214, 158, 46, 0.3);
+            border-color: #0052FF;
+            box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.3);
             outline: none;
         }
         
         .input-field::placeholder {
-            color: #A0AEC0;
+            color: #8b949e;
         }
 
-        /* Animation for text */
         @keyframes text-focus-in {
             0% { filter: blur(12px); opacity: 0; }
             100% { filter: blur(0px); opacity: 1; }
         }
         .text-focus-in { animation: text-focus-in 0.8s cubic-bezier(0.550, 0.085, 0.680, 0.530) both; }
 
-        /* Progress Bar */
         #progress-bar-container {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 8px;
-            background-color: rgba(45, 55, 72, 0.5);
+            background-color: rgba(36, 41, 47, 0.5);
         }
         #progress-bar {
             width: 0%;
             height: 100%;
-            background-color: #D69E2E;
+            background-color: #0052FF;
             transition: width 0.6s ease-out;
+            border-radius: 0 2px 2px 0;
+        }
+        
+        .loader {
+            border: 6px solid #30363d; /* Loader background */
+            border-top: 6px solid #0052FF; /* Loader active color */
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            animation: spin 1s linear infinite;
         }
 
-.loader {
-    border: 6px solid #30363d; /* Loader background */
-    border-top: 6px solid #0052FF; /* Loader active color */
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
     </style>
 </head>
 <body class="overflow-hidden">
 
+    <canvas id="canvas-background"></canvas>
+
     <main id="funnel-container" class="relative h-screen w-screen">
 
         <!-- Slide 1: The Personal Video Hook -->
-        <section id="slide-1" class="slide active flex flex-col justify-center items-center p-6 text-center">
-            <img src="https://placehold.co/300x450/1A202C/D69E2E?text=Video+of+Expert\n(Smiling+Warmly)" alt="A video of the agency expert smiling warmly" class="w-48 h-72 object-cover rounded-2xl shadow-2xl mb-8 border-2 border-gray-600">
+        <section id="slide-1" class="slide active p-6 text-center">
+            <img src="https://storage.googleapis.com/gemini-generative-ai-dev/1753297396707.jpg-dd84e674-0754-4d6f-bc3b-5ce65ead8503" alt="Shift Agency Logo" class="h-16 mb-10">
+            <img src="https://placehold.co/300x450/0d1117/0052FF?text=Video+of+Expert\n(Smiling+Warmly)" alt="A video of the agency expert smiling warmly" class="w-48 h-72 object-cover rounded-2xl shadow-2xl mb-8 border-2 border-gray-700">
             <h1 class="text-4xl md:text-5xl font-bold mb-8 text-focus-in">Hi there! Glad you made it.</h1>
             <button data-next="2" class="btn text-xl font-bold py-4 px-12 rounded-lg">Let's Start</button>
         </section>
 
         <!-- Slide 2: The Problem Identification -->
-        <section id="slide-2" class="slide flex flex-col justify-center items-center p-6 text-center">
-            <img src="https://placehold.co/150x150/1A202C/D69E2E?text=Expert" alt="The agency expert looking thoughtful" class="w-32 h-32 object-cover rounded-full shadow-2xl mb-6 border-2 border-gray-600">
+        <section id="slide-2" class="slide p-6 text-center">
+            <img src="https://placehold.co/150x150/0d1117/0052FF?text=Expert" alt="The agency expert looking thoughtful" class="w-32 h-32 object-cover rounded-full shadow-2xl mb-6 border-2 border-gray-700">
             <h2 class="text-2xl md:text-3xl font-bold mb-8 max-w-lg text-focus-in">What's your biggest advertising challenge right now?</h2>
             <div class="w-full max-w-md flex flex-col gap-4">
                 <button data-challenge="waste" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full">Wasting Ad Spend Without Sales</button>
@@ -175,16 +183,16 @@
         </section>
 
         <!-- Slide 3: The Solution Introduction -->
-        <section id="slide-3" class="slide flex flex-col justify-center items-center p-6 text-center">
-            <img src="https://placehold.co/400x250/2D3748/D69E2E?text=Ad+Dashboard\n(Positive+Results)" alt="A screen recording of an ad campaign dashboard showing positive results" class="w-full max-w-md object-cover rounded-2xl shadow-2xl mb-8 border-2 border-gray-600">
+        <section id="slide-3" class="slide p-6 text-center">
+            <img src="https://placehold.co/400x250/161b22/0052FF?text=Ad+Dashboard\n(Positive+Results)" alt="A screen recording of an ad campaign dashboard showing positive results" class="w-full max-w-md object-cover rounded-2xl shadow-2xl mb-8 border-2 border-gray-700">
             <h2 id="solution-message" class="text-2xl md:text-3xl font-bold mb-6 max-w-lg text-focus-in">I see it all the time. We can fix that by...</h2>
             <button data-next="4" id="solution-button" class="btn text-xl font-bold py-4 px-8 rounded-lg">...pinpointing every wasted penny.</button>
         </section>
 
         <!-- Slide 4: The Video Testimonial -->
-        <section id="slide-4" class="slide flex flex-col justify-center items-center p-6 text-center">
+        <section id="slide-4" class="slide p-6 text-center">
             <div class="relative w-48 h-72 mb-6">
-                 <img src="https://placehold.co/300x450/1A202C/D69E2E?text=Happy+Client+Video" alt="A video testimonial from a happy client" class="w-full h-full object-cover rounded-2xl shadow-2xl border-2 border-gray-600">
+                 <img src="https://placehold.co/300x450/0d1117/0052FF?text=Happy+Client+Video" alt="A video testimonial from a happy client" class="w-full h-full object-cover rounded-2xl shadow-2xl border-2 border-gray-700">
                  <div class="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 text-white p-3 rounded-b-2xl">
                      <p class="font-bold text-sm">"Their audit found £5k in wasted spend in the first week."</p>
                      <p class="text-xs mt-1">– John P., E-commerce Owner</p>
@@ -194,46 +202,62 @@
         </section>
 
         <!-- Slide 5: The Specific Offer -->
-        <section id="slide-5" class="slide flex flex-col justify-center items-center p-6 text-center">
-            <img src="https://placehold.co/150x150/1A202C/D69E2E?text=Confident+Expert" alt="The agency expert looking confident and helpful" class="w-32 h-32 object-cover rounded-full shadow-2xl mb-6 border-2 border-gray-600">
+        <section id="slide-5" class="slide p-6 text-center">
+            <img src="https://placehold.co/150x150/0d1117/0052FF?text=Confident+Expert" alt="The agency expert looking confident and helpful" class="w-32 h-32 object-cover rounded-full shadow-2xl mb-6 border-2 border-gray-700">
             <h2 class="text-2xl md:text-3xl font-bold mb-8 max-w-xl text-focus-in">I will personally conduct a free, no-obligation audit of your ad account to show you exactly where the opportunities are.</h2>
-            <button data-next="6" class="btn text-xl font-bold py-4 px-12 rounded-lg">Claim My Free Audit</button>
+            <button data-next="5.5" class="btn text-xl font-bold py-4 px-12 rounded-lg">Claim My Free Audit</button>
         </section>
 
-<!-- Slide 5.5: Validating Answers -->
-<section id="slide-5-5" class="slide flex flex-col justify-center items-center p-6 text-center">
-    <div class="loader mb-8"></div>
-    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-focus-in">Validating your Answers</h2>
-    <p class="text-lg text-gray-400">This only takes a few seconds...</p>
-</section>
+        <!-- Slide 5.5: Validating Answers -->
+        <section id="slide-5-5" class="slide p-6 text-center">
+            <div class="loader mb-8"></div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-focus-in">Validating your Answers</h2>
+            <p class="text-lg text-gray-400">This only takes a few seconds...</p>
+        </section>
 
-        <!-- Slide 6: The Lead Capture Form -->
-        <section id="slide-6" class="slide flex flex-col justify-center items-center p-6">
-            <div class="w-full max-w-md text-center">
-                <h2 class="text-3xl font-bold mb-6 text-focus-in">Claim Your Free Ad Account Audit</h2>
-                <form id="lead-form" class="flex flex-col gap-4">
-                    <input type="text" placeholder="Enter your name" class="input-field w-full p-4 rounded-lg text-lg" required>
-                    <input type="email" placeholder="Enter your work email" class="input-field w-full p-4 rounded-lg text-lg" required>
-                    <input type="url" placeholder="Enter your website URL" class="input-field w-full p-4 rounded-lg text-lg" required>
-                    <select class="input-field w-full p-4 rounded-lg text-lg">
-                        <option value="" disabled selected>Monthly Ad Spend (Optional)</option>
-                        <option value="<5k">&lt; £5k</option>
-                        <option value="5k-15k">£5k - £15k</option>
-                        <option value="15k-30k">£15k - £30k</option>
-                        <option value="30k+">£30k+</option>
-                    </select>
-                    <button type="submit" class="btn text-xl font-bold py-4 px-12 rounded-lg mt-4">Get My Audit</button>
+        <!-- Slide 6: The Lead Capture Form (New Design) -->
+        <section id="slide-6" class="slide p-6">
+            <div class="w-full max-w-lg bg-gray-900 bg-opacity-40 border border-gray-700 rounded-2xl p-8 md:p-12 shadow-2xl text-center backdrop-filter backdrop-blur-sm">
+                <div class="w-16 h-16 bg-green-500/20 border-2 border-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-4xl text-green-400">✓</span>
+                </div>
+                <p class="text-green-400 font-semibold mb-2">Your Audit is Ready</p>
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-focus-in">Where should we send your free expert ad account audit?</h2>
+                <form id="lead-form" class="flex flex-col gap-5 text-left">
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-400">👤</span>
+                        <input type="text" name="name" placeholder="Your first name" class="input-field w-full p-4 pl-12 rounded-lg text-lg" required>
+                    </div>
+                    <div class="relative">
+                         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-400">@</span>
+                        <input type="email" name="email" placeholder="Your email address" class="input-field w-full p-4 pl-12 rounded-lg text-lg" required>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-400">🌐</span>
+                        <input type="url" name="website" placeholder="Your website URL" class="input-field w-full p-4 pl-12 rounded-lg text-lg" required>
+                    </div>
+                    <div class="mt-2">
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input type="checkbox" id="privacy-check" class="hidden peer">
+                            <span class="w-6 h-6 border-2 border-gray-500 rounded-md flex items-center justify-center text-white text-opacity-0 peer-checked:text-opacity-100 peer-checked:bg-blue-600 peer-checked:border-blue-600 transition-all duration-300 group-hover:border-blue-500">
+                               ✓
+                            </span>
+                            <span class="text-gray-400">I have read and accept the <a href="#" class="text-blue-400 hover:underline">privacy policy</a>.</span>
+                        </label>
+                        <p id="privacy-error" class="text-red-500 text-sm mt-2 hidden pl-9">This is a required field.</p>
+                    </div>
+                    <button type="submit" class="btn text-xl font-bold py-4 px-12 rounded-lg mt-6">Show Results Now</button>
                 </form>
             </div>
         </section>
 
         <!-- Slide 7: The Thank You & Next Steps -->
-        <section id="slide-7" class="slide flex flex-col justify-center items-center p-6 text-center">
-             <img src="https://placehold.co/150x150/1A202C/D69E2E?text=Logo/Expert" alt="Agency logo or smiling expert" class="w-32 h-32 object-cover rounded-full shadow-2xl mb-6 border-2 border-gray-600">
+        <section id="slide-7" class="slide p-6 text-center">
+             <img src="https://storage.googleapis.com/gemini-generative-ai-dev/1753297396707.jpg-dd84e674-0754-4d6f-bc3b-5ce65ead8503" alt="Shift Agency Logo" class="h-16 mb-6">
             <h2 class="text-4xl font-bold mb-4 text-focus-in">Thank you!</h2>
             <p class="text-xl mb-8">Your audit request is submitted.</p>
-            <div class="text-left bg-gray-800 bg-opacity-50 p-6 rounded-lg shadow-lg border border-gray-600 max-w-md">
-                <h3 class="font-bold text-lg mb-3 text-yellow-400">Here's what happens next:</h3>
+            <div class="text-left bg-gray-900 bg-opacity-50 p-6 rounded-lg shadow-lg border border-gray-700 max-w-md">
+                <h3 class="font-bold text-lg mb-3 text-blue-400">Here's what happens next:</h3>
                 <ol class="list-decimal list-inside space-y-2">
                     <li>Check your email for a confirmation message from us.</li>
                     <li>We will personally review your request.</li>
@@ -252,8 +276,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             const funnelContainer = document.getElementById('funnel-container');
             const progressBar = document.getElementById('progress-bar');
-            const totalSlides = 7;
-            let currentSlide = 1;
+            const totalUserSteps = 7;
+            let currentSlideId = '1';
 
             const solutionBranching = {
                 waste: { message: "I see it all the time. We can fix that by...", button: "...pinpointing every wasted penny." },
@@ -262,35 +286,43 @@
                 scaling: { message: "Hitting a plateau is tough. We break through by...", button: "...unlocking new audiences ready to buy." }
             };
 
-            const updateProgressBar = () => {
-                const progress = ((currentSlide -1) / (totalSlides - 1)) * 100;
-                progressBar.style.width = `${progress}%`;
+            const getProgress = (slideId) => {
+                const step = parseFloat(slideId);
+                return ((step - 1) / (totalUserSteps - 1)) * 100;
             };
 
-            const showSlide = (slideNumber) => {
-                const current = document.getElementById(`slide-${currentSlide}`);
-                const next = document.getElementById(`slide-${slideNumber}`);
+            const updateProgressBar = (slideId) => {
+                progressBar.style.width = `${getProgress(slideId)}%`;
+            };
+
+            const showSlide = (slideId) => {
+                const current = document.getElementById(`slide-${currentSlideId}`);
+                const next = document.getElementById(`slide-${slideId}`);
                 
                 if (current) {
                     current.classList.add('exit');
-                    // Wait for exit animation to finish before making it invisible
                     setTimeout(() => {
-                        current.classList.remove('active');
-                        current.classList.remove('exit');
+                        current.classList.remove('active', 'exit');
                     }, 600);
                 }
                 
                 if (next) {
-                    // Animate text elements within the next slide
                     next.querySelectorAll('.text-focus-in').forEach(el => {
                         el.style.animation = 'none';
-                        el.offsetHeight; /* trigger reflow */
+                        el.offsetHeight;
                         el.style.animation = null; 
                     });
                     next.classList.add('active');
                 }
-                currentSlide = slideNumber;
-                updateProgressBar();
+                
+                currentSlideId = slideId;
+                updateProgressBar(currentSlideId);
+
+                if (slideId === '5.5') {
+                    setTimeout(() => {
+                        showSlide('6');
+                    }, 2500);
+                }
             };
 
             funnelContainer.addEventListener('click', (e) => {
@@ -304,20 +336,97 @@
                     document.getElementById('solution-message').textContent = message;
                     document.getElementById('solution-button').textContent = button;
                     
-                    showSlide(3);
+                    showSlide('3');
                 } else if (target.dataset.next) {
-                    const nextSlideNumber = parseInt(target.dataset.next, 10);
-                    showSlide(nextSlideNumber);
+                    const nextSlideId = target.dataset.next;
+                    showSlide(nextSlideId);
                 }
             });
 
-            document.getElementById('lead-form').addEventListener('submit', (e) => {
+            const leadForm = document.getElementById('lead-form');
+            const privacyCheck = document.getElementById('privacy-check');
+            const privacyError = document.getElementById('privacy-error');
+
+            leadForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                showSlide(7);
+                if (!privacyCheck.checked) {
+                    privacyError.classList.remove('hidden');
+                } else {
+                    privacyError.classList.add('hidden');
+                    showSlide('7');
+                }
             });
             
-            // Initial progress bar state
-            updateProgressBar();
+            updateProgressBar(currentSlideId);
+
+            // --- Animated Canvas Background ---
+            const canvas = document.getElementById('canvas-background');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            
+            const resizeCanvas = () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            };
+
+            const createParticles = () => {
+                particles = [];
+                const particleCount = Math.floor((canvas.width * canvas.height) / 20000);
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.3,
+                        vy: (Math.random() - 0.5) * 0.3,
+                        radius: Math.random() * 1.5 + 1
+                    });
+                }
+            };
+
+            const animate = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0, 82, 255, 0.4)';
+                    ctx.fill();
+                });
+
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < 150) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(0, 82, 255, ${0.8 - dist / 150})`;
+                            ctx.lineWidth = 0.3;
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                requestAnimationFrame(animate);
+            };
+
+            window.addEventListener('resize', () => {
+                resizeCanvas();
+                createParticles();
+            });
+
+            resizeCanvas();
+            createParticles();
+            animate();
         });
     </script>
 
