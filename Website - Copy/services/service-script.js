@@ -81,3 +81,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+
+    // --- 4. TABS INTERFACE ---
+    const tabsNav = document.querySelector('.tabs-nav');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+
+    if (tabsNav) {
+        tabsNav.addEventListener('click', (e) => {
+            // Ensure a tab button was clicked
+            if (e.target.classList.contains('tab-link')) {
+                const tabId = e.target.dataset.tab;
+
+                // Deactivate all tab links and panes
+                document.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
+                tabPanes.forEach(pane => pane.classList.remove('active'));
+
+                // Activate the clicked tab link
+                e.target.classList.add('active');
+
+                // Activate the corresponding tab pane
+                const targetPane = document.getElementById(tabId);
+                if (targetPane) {
+                    targetPane.classList.add('active');
+                }
+            }
+        });
+    }
+
