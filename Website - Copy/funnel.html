@@ -9,6 +9,7 @@
         - Funnel Entry: The choice buttons on the landing page now serve as the primary entry point into the interactive funnel, making the "Let's Start" button from the original design redundant.
         - Funnel Flow: Once initiated, the funnel retains its proven slide-based structure, animations, and branching logic to maintain high engagement. The progress bar is now hidden on the landing page and only appears upon entering the funnel.
         - Restart Logic: The "Start Over" button now correctly returns the user to the initial landing page view (Slide 0).
+        - Form Update: A phone number field has been added. Responsiveness of the landing page headline has been improved.
         CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
     -->
     <meta charset="UTF-8">
@@ -199,7 +200,7 @@
                 <div class="text-center md:text-left">
                     <img src="https://storage.googleapis.com/gemini-generative-ai-dev/1753297396707.jpg-dd84e674-0754-4d6f-bc3b-5ce65ead8503" alt="Shift Agency Logo" class="h-12 mx-auto md:mx-0 mb-6">
                     <p class="text-blue-400 font-semibold mb-2">Free Expert Ad Account Audit</p>
-                    <h1 class="text-4xl lg:text-5xl font-bold mb-4 leading-tight">Master Ads & Scale Your Business with Confidence!</h1>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight">Master Ads & Scale Your Business with Confidence!</h1>
                     <p class="text-lg text-gray-400 mb-6">The proven system to generate consistent leads and sales using online advertising.</p>
                     <img src="https://placehold.co/300x168/0d1117/0052FF?text=Video+of+Expert" alt="A video of the agency expert" class="w-full max-w-sm mx-auto md:mx-0 rounded-2xl shadow-2xl mb-6 border-2 border-gray-700">
                     <div class="flex items-center justify-center md:justify-start gap-2 text-yellow-400">
@@ -249,7 +250,7 @@
         </section>
 
         <!-- Slide 5.5: Validating Answers -->
-        <section id="slide-5-5" class="slide p-6 text-center">
+        <section id="slide-5.5" class="slide p-6 text-center">
             <div class="loader mb-8"></div>
             <h2 class="text-3xl md:text-4xl font-bold mb-4 text-focus-in">Validating your Answers</h2>
             <p class="text-lg text-gray-400">This only takes a few seconds...</p>
@@ -271,6 +272,10 @@
                     <div class="relative">
                          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-400">@</span>
                         <input type="email" name="email" placeholder="Your email address" class="input-field w-full p-4 pl-12 rounded-lg text-lg" required>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-400">📞</span>
+                        <input type="tel" name="phone" placeholder="Your phone number (Optional)" class="input-field w-full p-4 pl-12 rounded-lg text-lg">
                     </div>
                     <div class="relative">
                         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-400">🌐</span>
@@ -340,7 +345,7 @@
                 waste: { message: "I see it all the time. We can fix that by...", button: "...pinpointing every wasted penny." },
                 cpl: { message: "That's a classic profitability killer. We solve this by...", button: "...optimizing for higher-quality leads." },
                 consistency: { message: "You're not alone. The key is to...", button: "...build a predictable sales engine." },
-                scaling: { message: "I already run successful ad campaigns", button: "Let's optimize them further!" }
+                scaling: { message: "You're already successful. We help you scale by...", button: "Let's optimize your campaigns further!" }
             };
 
             const getProgress = (slideId) => {
