@@ -1,6 +1,24 @@
 // This function runs when the entire page is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Mobile Navigation Toggle ---
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
+    if (mobileNavToggle) {
+        mobileNavToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+
+            // Optional: Change icon to 'X' when menu is open
+            const icon = mobileNavToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('ph-list');
+                icon.classList.add('ph-x');
+            } else {
+                icon.classList.remove('ph-x');
+                icon.classList.add('ph-list');
+            }
+        });
+    }
     // --- Theme Switcher ---
     const themeToggle = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
