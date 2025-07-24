@@ -3,14 +3,12 @@
 <head>
     <!-- 
         Chosen Palette: Digital Shift (derived from logo)
-        Application Structure Plan: The SPA retains the successful 7-step linear funnel structure. A new intermediate "validation" slide has been added between the offer and the form to enhance the user experience. The creative overhaul focuses on a highly dynamic and branded user experience. A custom particle network animation runs in the background, creating a sense of connectivity and technology. The UI palette is derived directly from the provided logo for brand cohesion. All animations and layouts are re-tested for a premium mobile-first experience.
-        Visualization & Content Choices: The core content remains, but the presentation is elevated.
-        - Background: A custom, lightweight particle network animation is implemented via HTML Canvas and JS for a unique, non-static visual experience.
-        - Logo: The client's logo is now a key part of the first and last slides, reinforcing brand identity.
-        - Transitions: The fluid slide-up-and-fade transitions are kept, now layered over the animated background for a more immersive effect.
-        - Micro-interactions: Button and input styles are updated to match the new "Digital Shift" color palette.
-        - Validation Screen: A new slide with a CSS loader simulates data processing, making the transition to the form feel more justified and intelligent.
-        - Form Redesign: Slide 6 is redesigned to match the user-provided layout, featuring a contained, icon-driven design for a professional feel.
+        Application Structure Plan: The SPA has been re-architected into a hybrid model. It begins with a static, two-column landing page (Slide 0) designed for initial engagement and information delivery, based on the user's reference image. Clicking a choice on this landing page initiates the transition into the full-screen, step-by-step funnel (Slides 2-7). This structure provides a strong initial context and value proposition before immersing the user in the focused, interactive lead capture process.
+        Visualization & Content Choices:
+        - Landing Page (New Slide 0): Combines the hook (video, headline) and problem identification (choice buttons) into a single, clear, above-the-fold view. This is a more conventional and scannable starting point for users.
+        - Funnel Entry: The choice buttons on the landing page now serve as the primary entry point into the interactive funnel, making the "Let's Start" button from the original design redundant.
+        - Funnel Flow: Once initiated, the funnel retains its proven slide-based structure, animations, and branching logic to maintain high engagement. The progress bar is now hidden on the landing page and only appears upon entering the funnel.
+        - Restart Logic: The "Start Over" button now correctly returns the user to the initial landing page view (Slide 0).
         CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
     -->
     <meta charset="UTF-8">
@@ -44,10 +42,11 @@
             visibility: hidden;
             transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0.6s;
             transform: translateY(20px);
-            display: flex; /* Changed from none to flex for centering */
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            overflow-y: auto;
         }
 
         .slide.active {
@@ -131,6 +130,13 @@
             width: 100%;
             height: 8px;
             background-color: rgba(36, 41, 47, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        #progress-bar-container.visible {
+            opacity: 1;
+            visibility: visible;
         }
         #progress-bar {
             width: 0%;
@@ -154,6 +160,30 @@
             100% { transform: rotate(360deg); }
         }
 
+        .restart-btn {
+            background-color: transparent;
+            border: 2px solid #4A5568;
+            color: #A0AEC0;
+            transition: all 0.3s ease;
+        }
+        .restart-btn:hover {
+            background-color: #4A5568;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+        }
+        .social-link {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #8b949e;
+            transition: color 0.3s, transform 0.3s;
+            text-decoration: none;
+            font-family: serif;
+        }
+        .social-link:hover {
+            color: #0052FF;
+            transform: scale(1.2);
+        }
+
     </style>
 </head>
 <body class="overflow-hidden">
@@ -162,23 +192,33 @@
 
     <main id="funnel-container" class="relative h-screen w-screen">
 
-        <!-- Slide 1: The Personal Video Hook -->
-        <section id="slide-1" class="slide active p-6 text-center">
-            <img src="https://i.imgur.com/MldkZJe.jpeg" alt="Shift Agency Logo" class="h-16 mb-10">
-            <img src="https://placehold.co/300x450/0d1117/0052FF?text=Video+of+Expert\n(Smiling+Warmly)" alt="A video of the agency expert smiling warmly" class="w-48 h-72 object-cover rounded-2xl shadow-2xl mb-8 border-2 border-gray-700">
-            <h1 class="text-4xl md:text-5xl font-bold mb-8 text-focus-in">Hi there! Glad you made it.</h1>
-            <button data-next="2" class="btn text-xl font-bold py-4 px-12 rounded-lg">Let's Start</button>
-        </section>
+        <!-- Slide 0: The Landing Page -->
+        <section id="slide-0" class="slide active p-6">
+            <div class="w-full max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+                <!-- Left Column -->
+                <div class="text-center md:text-left">
+                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/1753297396707.jpg-dd84e674-0754-4d6f-bc3b-5ce65ead8503" alt="Shift Agency Logo" class="h-12 mx-auto md:mx-0 mb-6">
+                    <p class="text-blue-400 font-semibold mb-2">Free Expert Ad Account Audit</p>
+                    <h1 class="text-4xl lg:text-5xl font-bold mb-4 leading-tight">Master Ads & Scale Your Business with Confidence!</h1>
+                    <p class="text-lg text-gray-400 mb-6">The proven system to generate consistent leads and sales using online advertising.</p>
+                    <img src="https://placehold.co/300x168/0d1117/0052FF?text=Video+of+Expert" alt="A video of the agency expert" class="w-full max-w-sm mx-auto md:mx-0 rounded-2xl shadow-2xl mb-6 border-2 border-gray-700">
+                    <div class="flex items-center justify-center md:justify-start gap-2 text-yellow-400">
+                        <span>★★★★★</span>
+                    </div>
+                    <p class="text-gray-400 mt-2">"Must-have for every founder"</p>
+                </div>
 
-        <!-- Slide 2: The Problem Identification -->
-        <section id="slide-2" class="slide p-6 text-center">
-            <img src="https://placehold.co/150x150/0d1117/0052FF?text=Expert" alt="The agency expert looking thoughtful" class="w-32 h-32 object-cover rounded-full shadow-2xl mb-6 border-2 border-gray-700">
-            <h2 class="text-2xl md:text-3xl font-bold mb-8 max-w-lg text-focus-in">What's your biggest advertising challenge right now?</h2>
-            <div class="w-full max-w-md flex flex-col gap-4">
-                <button data-challenge="waste" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full">Wasting Ad Spend Without Sales</button>
-                <button data-challenge="cpl" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full">Cost-Per-Lead is Too High</button>
-                <button data-challenge="consistency" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full">Struggling to Generate Consistent Sales</button>
-                <button data-challenge="scaling" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full">Difficulty Scaling Store Sales</button>
+                <!-- Right Column -->
+                <div class="w-full bg-gray-900 bg-opacity-40 border border-gray-700 rounded-2xl p-8 shadow-2xl backdrop-filter backdrop-blur-sm">
+                    <p class="text-blue-400 font-semibold mb-2 text-center">Take the Test & Find Your Level</p>
+                    <h2 class="text-2xl font-bold mb-6 text-center">What's your experience with paid advertising?</h2>
+                    <div class="w-full flex flex-col gap-4">
+                        <button data-challenge="waste" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full text-left flex items-center gap-4">🎓<span>I've never run ads before</span></button>
+                        <button data-challenge="cpl" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full text-left flex items-center gap-4">🤔<span>I've tried running ads but didn't get results</span></button>
+                        <button data-challenge="consistency" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full text-left flex items-center gap-4">📈<span>I run ads but struggle to scale profitably</span></button>
+                        <button data-challenge="scaling" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full text-left flex items-center gap-4">🚀<span>I already run successful ad campaigns</span></button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -251,18 +291,34 @@
             </div>
         </section>
 
-        <!-- Slide 7: The Thank You & Next Steps -->
+        <!-- Slide 7: The Thank You & Next Steps (New Design) -->
         <section id="slide-7" class="slide p-6 text-center">
-             <img src="https://i.imgur.com/MldkZJe.jpeg" alt="Shift Agency Logo" class="h-16 mb-6">
-            <h2 class="text-4xl font-bold mb-4 text-focus-in">Thank you!</h2>
-            <p class="text-xl mb-8">Your audit request is submitted.</p>
-            <div class="text-left bg-gray-900 bg-opacity-50 p-6 rounded-lg shadow-lg border border-gray-700 max-w-md">
-                <h3 class="font-bold text-lg mb-3 text-blue-400">Here's what happens next:</h3>
-                <ol class="list-decimal list-inside space-y-2">
-                    <li>Check your email for a confirmation message from us.</li>
-                    <li>We will personally review your request.</li>
-                    <li>Our team will reach out within 1 business day to get started on your free audit!</li>
-                </ol>
+            <div class="flex flex-col justify-center items-center h-full w-full max-w-md">
+                <div class="flex-grow flex flex-col justify-center items-center w-full">
+                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/1753297396707.jpg-dd84e674-0754-4d6f-bc3b-5ce65ead8503" alt="Shift Agency Logo" class="h-16 mb-6">
+                    <h2 class="text-4xl font-bold mb-4 text-focus-in">Thank you!</h2>
+                    <p class="text-xl mb-8">Your audit request is submitted.</p>
+                    <div class="text-left bg-gray-900 bg-opacity-50 p-6 rounded-lg shadow-lg border border-gray-700 w-full mb-8">
+                        <h3 class="font-bold text-lg mb-3 text-blue-400">Here's what happens next:</h3>
+                        <ol class="list-decimal list-inside space-y-2">
+                            <li>Check your email for a confirmation message from us.</li>
+                            <li>We will personally review your request.</li>
+                            <li>Our team will reach out within 1 business day to get started!</li>
+                        </ol>
+                    </div>
+                    <button data-restart="0" class="restart-btn text-lg font-semibold py-3 px-10 rounded-lg">Start Over</button>
+                </div>
+                <div class="w-full pt-8 pb-4">
+                    <p class="text-gray-400 mb-3">Follow us for marketing tips & updates:</p>
+                    <div class="flex justify-center gap-6 mb-4">
+                        <a href="#" class="social-link" title="X/Twitter">𝕏</a>
+                        <a href="#" class="social-link" title="LinkedIn" style="font-family: sans-serif; font-weight: bold;">in</a>
+                        <a href="#" class="social-link" title="Facebook" style="font-family: sans-serif; font-weight: bold;">f</a>
+                    </div>
+                    <div class="text-xs text-gray-500">
+                        <a href="#" class="hover:text-blue-400 transition-colors">Terms & Conditions</a> | <a href="#" class="hover:text-blue-400 transition-colors">Privacy Policy</a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -275,24 +331,33 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const funnelContainer = document.getElementById('funnel-container');
+            const progressBarContainer = document.getElementById('progress-bar-container');
             const progressBar = document.getElementById('progress-bar');
-            const totalUserSteps = 7;
-            let currentSlideId = '1';
+            const totalFunnelSteps = 6; // Total steps *within the funnel* (Slide 3 to 7)
+            let currentSlideId = '0';
 
             const solutionBranching = {
                 waste: { message: "I see it all the time. We can fix that by...", button: "...pinpointing every wasted penny." },
                 cpl: { message: "That's a classic profitability killer. We solve this by...", button: "...optimizing for higher-quality leads." },
                 consistency: { message: "You're not alone. The key is to...", button: "...build a predictable sales engine." },
-                scaling: { message: "Hitting a plateau is tough. We break through by...", button: "...unlocking new audiences ready to buy." }
+                scaling: { message: "I already run successful ad campaigns", button: "Let's optimize them further!" }
             };
 
             const getProgress = (slideId) => {
                 const step = parseFloat(slideId);
-                return ((step - 1) / (totalUserSteps - 1)) * 100;
+                if (step < 3) return 0; // No progress until funnel starts
+                const funnelStep = step - 2; // Funnel starts at step 1 (slide 3)
+                return ((funnelStep - 1) / (totalFunnelSteps - 1)) * 100;
             };
 
             const updateProgressBar = (slideId) => {
-                progressBar.style.width = `${getProgress(slideId)}%`;
+                const progress = getProgress(slideId);
+                progressBar.style.width = `${progress}%`;
+                if (parseFloat(slideId) >= 3) {
+                    progressBarContainer.classList.add('visible');
+                } else {
+                    progressBarContainer.classList.remove('visible');
+                }
             };
 
             const showSlide = (slideId) => {
@@ -324,6 +389,10 @@
                     }, 2500);
                 }
             };
+            
+            const leadForm = document.getElementById('lead-form');
+            const privacyCheck = document.getElementById('privacy-check');
+            const privacyError = document.getElementById('privacy-error');
 
             funnelContainer.addEventListener('click', (e) => {
                 const target = e.target.closest('button');
@@ -340,12 +409,12 @@
                 } else if (target.dataset.next) {
                     const nextSlideId = target.dataset.next;
                     showSlide(nextSlideId);
+                } else if (target.dataset.restart) {
+                    leadForm.reset();
+                    privacyError.classList.add('hidden');
+                    showSlide('0');
                 }
             });
-
-            const leadForm = document.getElementById('lead-form');
-            const privacyCheck = document.getElementById('privacy-check');
-            const privacyError = document.getElementById('privacy-error');
 
             leadForm.addEventListener('submit', (e) => {
                 e.preventDefault();
