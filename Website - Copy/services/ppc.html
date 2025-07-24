@@ -1,149 +1,217 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Design & Development Services | Your Agency Name</title>
-     <link rel="stylesheet" href="../style.css">
-
+    <title>Results-Driven PPC Services | Stellar Digital</title>
+    
+    <!-- Corrected Stylesheet Links -->
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="service-style.css">
+
+    <!-- Swiper for Portfolio Slider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
 
-    <nav class="navbar">
-        </nav>
+<!-- ====================================================== -->
+<!-- ==     1. STANDARDIZED HEADER                       == -->
+<!-- ====================================================== -->
+<header class="main-header">
+    <nav class="main-nav">
+        <a href="../index.html" class="nav-logo">Stellar Digital</a>
+        <ul class="nav-links">
+            <li><a href="../index.html#services">Services</a></li>
+            <li><a href="../index.html#about">About Us</a></li>
+            <li><a href="../index.html#process">Process</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle light and dark mode">
+            <i class="ph-bold ph-sun"></i>
+            <i class="ph-bold ph-moon"></i>
+        </button>
+        <!-- Mobile Menu Button -->
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+            <i class="ph-bold ph-list"></i>
+        </button>
+    </nav>
+</header>
 
-    <main>
-        <section class="service-hero">
+<main class="service-page-main">
+
+    <!-- ====================================================== -->
+    <!-- ==     2. DYNAMIC HERO SECTION (PPC FOCUSED)        == -->
+    <!-- ====================================================== -->
+    <section class="dynamic-hero">
+        <div class="hero-background-shapes"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="animate-in">Instant Traffic.</span> 
+                    <span class="animate-in">Maximum ROI.</span> 
+                    <span class="animate-in">Real Results.</span>
+                </h1>
+                <p class="hero-subtitle animate-in">Our data-driven PPC campaigns are engineered to maximize your return on investment, placing your brand in front of high-intent customers at the perfect moment.</p>
+                <a href="#contact" class="btn btn-primary animate-in">Get Your Free PPC Proposal</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================================================== -->
+    <!-- ==     3. DETAILED SERVICES (PPC TABS)              == -->
+    <!-- ====================================================== -->
+    <section class="detailed-services-section">
+        <div class="tech-bar">
             <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title fade-in">Web Design & Development</h1>
-                    <p class="hero-subtitle fade-in">We build beautiful, high-performance websites that captivate your audience and convert visitors into loyal customers.</p>
-                    <a href="#contact" class="btn btn-primary fade-in">Start Your Project</a>
+                <div class="tech-logo"><i class="ph-brands ph-google-logo"></i><span>Google Ads</span></div>
+                <div class="tech-logo"><i class="ph-brands ph-meta-logo"></i><span>Meta Ads</span></div>
+                <div class="tech-logo"><i class="ph-brands ph-linkedin-logo"></i><span>LinkedIn Ads</span></div>
+                <div class="tech-logo"><i class="ph-bold ph-shopping-cart-simple"></i><span>Shopping Ads</span></div>
+                <div class="tech-logo"><i class="ph-bold ph-chart-bar"></i><span>Analytics</span></div>
+                <div class="tech-logo"><i class="ph-bold ph-target"></i><span>Remarketing</span></div>
+            </div>
+        </div>
+
+        <div class="container section-content">
+            <div class="section-heading">
+                <h2>Our PPC Services</h2>
+                <a href="#contact" class="start-project-link">
+                    <span>Start Your Project</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </a>
+            </div>
+            <div class="section-description">
+                <p>We manage comprehensive paid search campaigns across the platforms that matter most to your business. Explore our core PPC management services below.</p>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tabs-nav">
+                <button class="tab-link active" data-tab="search">Search Ads</button>
+                <button class="tab-link" data-tab="social">Social Ads</button>
+                <button class="tab-link" data-tab="shopping">Shopping Ads</button>
+                <button class="tab-link" data-tab="remarketing">Remarketing</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tabs-content">
+                <div id="search" class="tab-pane active">
+                    <div class="tab-pane-content">
+                        <h3>Capture High-Intent Customers</h3>
+                        <p>We create and manage powerful Google Search campaigns that target users actively looking for your products or services. Through meticulous keyword research and ad copy optimization, we ensure you capture the most valuable traffic.</p>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1599690939282-5634d8543a18?q=80&w=2070" alt="Search Ads illustration">
+                </div>
+                <div id="social" class="tab-pane">
+                    <div class="tab-pane-content">
+                        <h3>Engage Your Audience on Social Media</h3>
+                        <p>From Meta to LinkedIn, we build highly-targeted social ad campaigns that reach your ideal customer demographic. We leverage powerful audience segmentation to build brand awareness and drive conversions where your audience spends their time.</p>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1974" alt="Social Media Ads illustration">
+                </div>
+                <div id="shopping" class="tab-pane">
+                    <div class="tab-pane-content">
+                        <h3>Showcase Your Products</h3>
+                        <p>For e-commerce businesses, we optimize your product feeds and manage Google Shopping campaigns to place your products directly in front of motivated buyers, driving sales and maximizing your return on ad spend (ROAS).</p>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1579298245158-3de3fe4d5392?q=80&w=2070" alt="Shopping Ads illustration">
+                </div>
+                <div id="remarketing" class="tab-pane">
+                    <div class="tab-pane-content">
+                        <h3>Re-engage and Convert</h3>
+                        <p>Don't lose valuable leads. We implement strategic remarketing campaigns that re-engage past website visitors with tailored ads, reminding them of your brand and encouraging them to complete their purchase or inquiry.</p>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070" alt="Remarketing illustration">
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="key-features">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Everything You Need to Succeed Online</h2>
-                    <p class="section-subtitle">Our web design and development services are comprehensive, covering every aspect of your digital presence.</p>
+    <!-- ====================================================== -->
+    <!-- ==     4. FAQ SECTION (PPC QUESTIONS)               == -->
+    <!-- ====================================================== -->
+      <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How quickly will I see results from PPC?</span>
+                        <i class="ph-bold ph-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>PPC offers near-instant results. Once your campaigns are live, you can start seeing traffic and leads within hours. However, optimizing for profitability and peak performance typically takes a few weeks of data collection and refinement.</p>
+                    </div>
                 </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="ph-bold ph-devices"></i></div>
-                        <h4>Responsive Design</h4>
-                        <p>Flawless viewing experience on all devices, from desktops to smartphones.</p>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How much should I budget for PPC?</span>
+                        <i class="ph-bold ph-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Your budget depends on your industry, goals, and competition. We perform detailed keyword research and competitive analysis to recommend a starting budget that allows for effective testing and a positive return on investment.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="ph-bold ph-storefront"></i></div>
-                        <h4>E-commerce Solutions</h4>
-                        <p>Powerful online stores that make it easy for you to sell and for your customers to buy.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="ph-bold ph-rocket"></i></div>
-                        <h4>SEO-Optimized</h4>
-                        <p>Built from the ground up to rank high on search engines and attract organic traffic.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="ph-bold ph-shield-check"></i></div>
-                        <h4>Secure & Reliable</h4>
-                        <p>Robust security measures and reliable hosting to protect your site and your data.</p>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you provide reports on campaign performance?</span>
+                        <i class="ph-bold ph-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. We provide transparent, detailed monthly reports that break down key metrics like click-through rate (CTR), cost-per-conversion, and return on ad spend (ROAS). We believe in complete transparency and partnership.</p>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section class="process-section">
-            <div class="container">
-                 <div class="section-header">
-                    <h2 class="section-title">Our Proven 4-Step Process</h2>
-                    <p class="section-subtitle">We follow a clear, collaborative process to ensure your project is a stunning success.</p>
-                </div>
-                <div class="process-timeline">
-                    <div class="process-step">
-                        <div class="process-number">1</div>
-                        <div class="process-content">
-                            <h4>Discovery & Strategy</h4>
-                            <p>We start by understanding your goals, audience, and market to build a strategic foundation for your website.</p>
-                        </div>
+        </div>
+    </section>
+    
+    <!-- ====================================================== -->
+    <!-- ==     5. CONTACT SECTION (CONSISTENT)              == -->
+    <!-- ====================================================== -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="fade-in">
+                <h2 class="section-title">Ready to Maximize Your ROI?</h2>
+                <p class="contact-subtitle">Fill out the form below for a free, customized PPC proposal and strategy session.</p>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
                     </div>
-                     <div class="process-step">
-                        <div class="process-number">2</div>
-                        <div class="process-content">
-                            <h4>Design & UX</h4>
-                            <p>Our team creates wireframes and high-fidelity mockups focused on a seamless and intuitive user experience.</p>
-                        </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Your Phone">
                     </div>
-                     <div class="process-step">
-                        <div class="process-number">3</div>
-                        <div class="process-content">
-                            <h4>Development & Coding</h4>
-                            <p>Our developers bring the designs to life with clean, efficient code and robust back-end functionality.</p>
-                        </div>
+                     <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
                     </div>
-                     <div class="process-step">
-                        <div class="process-number">4</div>
-                        <div class="process-content">
-                            <h4>Launch & Optimization</h4>
-                            <p>After rigorous testing, we deploy your website and monitor its performance to ensure continued growth.</p>
-                        </div>
+                    <div class="form-group">
+                        <input type="url" id="website" name="website" placeholder="Your Website">
                     </div>
-                </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
             </div>
-        </section>
+        </div>
+    </section>
+</main>
 
-        <section class="cta-banner">
-            <div class="container">
-                <h2>Ready to Build Your New Website?</h2>
-                <p>Let's discuss your project and how we can help you achieve your business goals.</p>
-                <a href="#contact" class="btn btn-light">Get a Free Consultation</a>
-            </div>
-        </section>
+<!-- ====================================================== -->
+<!-- ==     6. STANDARDIZED FOOTER                       == -->
+<!-- ====================================================== -->
+<footer class="main-footer">
+    <div class="container">
+        <p>&copy; 2025 Stellar Digital. All Rights Reserved. | Crewe, United Kingdom</p>
+    </div>
+</footer>
 
-        <section class="faq-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Frequently Asked Questions</h2>
-                </div>
-                <div class="faq-accordion">
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>How much does a new website cost?</span>
-                            <i class="ph-bold ph-plus"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>The cost of a website can vary greatly depending on the scope, features, and complexity. We provide custom quotes after our initial discovery call. Contact us for a free, no-obligation consultation.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>How long does it take to build a website?</span>
-                            <i class="ph-bold ph-plus"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>A typical business website takes between 6 to 12 weeks from start to finish. More complex projects, like e-commerce sites, may take longer. We will provide a detailed project timeline before we begin.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>Will my website be mobile-friendly?</span>
-                            <i class="ph-bold ph-plus"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Absolutely. Every website we build is fully responsive, meaning it will look and work perfectly on all devices, including desktops, tablets, and smartphones. This is a standard part of our development process.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+<!-- ====================================================== -->
+<!-- ==     7. CORRECTED SCRIPT LINKS                    == -->
+<!-- ====================================================== -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="../script.js"></script>
+<script src="service-script.js"></script>
 
-    <footer class="footer">
-         </footer>
-
-    <script src="main.js"></script>
 </body>
 </html>
