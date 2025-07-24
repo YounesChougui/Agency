@@ -405,3 +405,68 @@
 .faq-item.active .faq-question i {
     transform: rotate(45deg); /* Rotates the plus icon to look like a close icon */
 }
+/* ===================================
+     STYLES FOR TABBED INTERFACE
+   =================================== */
+
+.tabs-nav {
+    display: flex;
+    gap: 15px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 40px;
+}
+
+.tab-link {
+    padding: 15px 25px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: color 0.3s, border-color 0.3s;
+    transform: translateY(1px); /* Aligns with the bottom border */
+}
+
+.tab-link:hover {
+    color: var(--primary-color);
+}
+
+.tab-link.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.tab-pane {
+    display: none; /* Hide all panes by default */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-pane.active {
+    display: grid; /* Show the active pane */
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+}
+
+.tab-pane img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px -10px var(--shadow-color);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive styles for tabs */
+@media (max-width: 768px) {
+    .tab-pane.active {
+        grid-template-columns: 1fr; /* Stack image and text on mobile */
+    }
+    .tabs-nav {
+        flex-wrap: wrap; /* Allow tabs to wrap on small screens */
+    }
+}
