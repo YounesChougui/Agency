@@ -679,9 +679,36 @@ body {
    Responsive Design
    ======================== */
 @media (max-width: 768px) {
-    /* Hide nav links, show a menu icon (not implemented in this version) */
+    /* --- Mobile Navigation --- */
     .nav-links {
-       display:none;
+        position: fixed;
+        top: 80px; /* Position below the header */
+        right: -100%; /* Start off-screen */
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: var(--bg-secondary-color);
+        
+        /* Change from row to column */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        
+        transition: right 0.4s ease-in-out;
+    }
+
+    .nav-links.active {
+        right: 0; /* Animate in when active */
+    }
+
+    .mobile-nav-toggle {
+        display: block; /* Show the hamburger button */
+    }
+
+    /* --- Other Mobile Styles --- */
+    .tech-stack-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .hero-headline {
@@ -696,51 +723,19 @@ body {
         grid-template-columns: 1fr;
     }
 
-    /* Make all form fields single column */
-    .form-group {
-        grid-column: span 1 !important;
-    }
-
-    .contact-form button {
+    .form-group, .contact-form button {
         grid-column: span 1 !important;
     }
 }
-/* Style for the mobile navigation toggle */
+
+/* Style for the mobile navigation toggle (hamburger button) */
 .mobile-nav-toggle {
-    display: none; /* Hidden by default */
+    display: none; /* Hidden by default on larger screens */
     background: none;
     border: none;
     cursor: pointer;
     font-size: 2rem;
     color: var(--text-color);
-    z-index: 1001; /* Make sure it's on top */
+    z-index: 1001; 
 }
-
-/* --- Responsive Design --- */
-@media (max-width: 768px) {
-    .nav-links {
-        /* ... existing styles ... */
-        /* Add new styles for mobile menu appearance */
-        position: fixed;
-        top: 80px; /* Position below the header */
-        right: -100%; /* Start off-screen */
-        width: 100%;
-        height: calc(100vh - 80px);
-        background-color: var(--bg-secondary-color);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 40px;
-        transition: right 0.4s ease-in-out;
-    }
-
-    .nav-links.active {
-        right: 0; /* Slide in when active */
-    }
-
-    .mobile-nav-toggle {
-        display: block; /* Show the button on mobile */
-    }
-}
-
 
