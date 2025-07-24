@@ -1,168 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Free Ad Account Audit</title>
-  <style>
-    /* Mobile-first reset & base */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { width: 100%; height: 100%; font-family: Arial, sans-serif; color: #333; }
-    button { font-size: 16px; padding: 14px; border: none; border-radius: 6px; background: #007bff; color: #fff; width: 100%; margin: 8px 0; }
-    section { display: none; width: 100%; height: 100vh; position: absolute; top: 0; left: 0; padding: 24px; background: #f9f9f9; }
-    section.active { display: block; }
-    .center { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; }
-    .video-bg, .video-client { width: 100%; height: auto; max-height: 60vh; border-radius: 12px; margin-bottom: 16px; }
-    .choice-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
-    input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; }
-    form { width: 100%; max-width: 400px; }
-    ol { text-align: left; margin-top: 16px; }
-  </style>
-</head>
-<body>
-  <!-- Slide 1 -->
-  <section id="slide1" class="active">
-    <div class="center">
-      <video class="video-bg" autoplay muted loop playsinline src="agent_welcome.mp4"></video>
-      <h1>Hi there! Glad you made it.</h1>
-      <button id="btn1">Let's Start</button>
-    </div>
-  </section>
-
-  <!-- Slide 2 -->
-  <section id="slide2">
-    <div class="center">
-      <h1>What&rsquo;s your biggest advertising challenge right now?</h1>
-      <div class="choice-group">
-        <button data-choice="waste">Wasting Ad Spend Without Sales</button>
-        <button data-choice="cpl">Cost-Per-Lead is Too High</button>
-        <button data-choice="consistent">Struggling to Generate Consistent Sales</button>
-        <button data-choice="scaling">Difficulty Scaling Store Sales</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Slide 3 -->
-  <section id="slide3">
-    <div class="center">
-      <video class="video-bg" autoplay muted loop playsinline src="dashboard_demo.mp4"></video>
-      <h1 id="slide3-msg"></h1>
-      <button id="slide3-btn"></button>
-    </div>
-  </section>
-
-  <!-- Slide 4 -->
-  <section id="slide4">
-    <div class="center">
-      <video class="video-client" autoplay muted loop playsinline src="client_testimonial.mp4"></video>
-      <h2>John P., E‑commerce Owner</h2>
-      <p>“Their audit found £5k in wasted spend in the first week.”</p>
-      <button id="btn4">Wow, tell me more!</button>
-    </div>
-  </section>
-
-  <!-- Slide 5 -->
-  <section id="slide5">
-    <div class="center">
-      <video class="video-bg" autoplay muted loop playsinline src="agent_confident.mp4"></video>
-      <h1>I will personally conduct a free, no-obligation audit of your ad account to show you exactly where the opportunities are.</h1>
-      <button id="btn5">Claim My Free Audit</button>
-    </div>
-  </section>
-
-  <!-- Slide 6 -->
-  <section id="slide6">
-    <div class="center">
-      <h1>Claim Your Free Ad Account Audit</h1>
-      <form id="audit-form">
-        <input type="text" name="name" placeholder="e.g. Jane Doe" required />
-        <input type="email" name="email" placeholder="e.g. jane@example.com" required />
-        <input type="tel" name="phone" placeholder="e.g. +44 7123 456 789" required />
-        <select name="platform" required>
-          <option value="">Select Advertising Platform</option>
-          <option>Google</option>
-          <option>Meta</option>
-          <option>LinkedIn</option>
-          <option>Microsoft</option>
-          <option>Other</option>
-        </select>
-        <select name="spend" required>
-          <option value="">Select Monthly Ad Spend</option>
-          <option>< £5k</option>
-          <option>£5k–£15k</option>
-          <option>£15k–£50k</option>
-          <option>> £50k</option>
-        </select>
-        <button type="submit">Get My Audit</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Slide 7 -->
-  <section id="slide7">
-    <div class="center">
-      <img src="agent_logo.png" alt="Agency Logo" style="max-width:150px; margin-bottom:16px;" />
-      <h1>Thank you! Your audit request is submitted.</h1>
-      <ol>
-        <li>Check your email for a confirmation.</li>
-        <li>We will review your request and reach out within 1 business day.</li>
-        <li>We’ll schedule a call to walk you through the audit findings.</li>
-      </ol>
-    </div>
-  </section>
-
-  <script>
-    // Simple slide navigation & branching logic
-    const slides = [...document.querySelectorAll('section')];
-    let current = 0;
-    const nextSlide = () => {
-      slides[current].classList.remove('active');
-      current = Math.min(current + 1, slides.length - 1);
-      slides[current].classList.add('active');
-    };
-
-    // Slide 1 -> 2
-    document.getElementById('btn1').addEventListener('click', nextSlide);
-
-    // Slide 2: capture choice, prep Slide 3, then next
-    document.querySelectorAll('#slide2 button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const choice = btn.dataset.choice;
-        const msg = document.getElementById('slide3-msg');
-        const cta = document.getElementById('slide3-btn');
-        switch(choice) {
-          case 'waste':
-            msg.textContent = 'I see that all the time. We help you fix that by…';
-            cta.textContent = '…pinpointing every wasted penny.';
-            break;
-          case 'cpl':
-            msg.textContent = 'High CPL kills ROI. We solve that by…';
-            cta.textContent = '…optimising bids for max efficiency.';
-            break;
-          case 'consistent':
-            msg.textContent = 'Consistency is key. We deliver it by…';
-            cta.textContent = '…building repeatable ad funnels.';
-            break;
-          case 'scaling':
-            msg.textContent = 'Scaling is tough. We make it simple by…';
-            cta.textContent = '…unlocking new audience segments.';
-            break;
+    <!-- 
+        Chosen Palette: Midnight & Gold
+        Application Structure Plan: The SPA retains the successful 7-step linear funnel structure. However, it's enhanced with a persistent progress bar to improve user orientation and motivation. The core enhancement is in the "feel" of the application. Instead of static slides, each step is a dynamic "scene" with animated entrances for text and UI elements, and fluid transitions between scenes. This creates a premium, narrative-driven experience that guides the user more effectively than a basic click-through funnel.
+        Visualization & Content Choices: The core content and branching logic are the same, but the presentation is elevated.
+        - All Slides: Use dynamic, animated entrances for text and images to create a more engaging, cinematic feel.
+        - Transitions: A custom slide-up-and-fade transition is used instead of a simple fade, making the flow feel more connected and fluid.
+        - Progress Bar: A new UI element was added to visually communicate progress, a key UX principle for multi-step forms.
+        - Micro-interactions: Buttons and inputs have enhanced hover and focus states with subtle animations (scale, shimmer, glow) to make the interface feel more responsive and satisfying to use.
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Ad Account Audit | Stellar Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(-45deg, #1a202c, #2d3748, #4a5568);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #E2E8F0;
         }
-        nextSlide();
-      });
-    });
 
-    // Continue linear flow
-    document.getElementById('slide3-btn').addEventListener('click', nextSlide);
-    document.getElementById('btn4').addEventListener('click', nextSlide);
-    document.getElementById('btn5').addEventListener('click', nextSlide);
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    // Form submit -> thank you
-    document.getElementById('audit-form').addEventListener('submit', e => {
-      e.preventDefault();
-      // here you’d hook into your CRM or API
-      nextSlide();
-    });
-  </script>
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0.6s;
+            transform: translateY(20px);
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .slide.exit {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .btn {
+            background-color: #D69E2E; /* Gold Accent */
+            color: #1A202C;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(214, 158, 46, 0.2);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .choice-btn {
+            background-color: rgba(45, 55, 72, 0.5);
+            border: 1px solid #4A5568;
+            color: #E2E8F0;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .choice-btn:hover {
+            background-color: rgba(74, 85, 104, 0.7);
+            border-color: #D69E2E;
+            transform: scale(1.03);
+        }
+
+        .input-field {
+            background-color: rgba(45, 55, 72, 0.5);
+            border: 1px solid #4A5568;
+            color: #E2E8F0;
+        }
+
+        .input-field:focus {
+            border-color: #D69E2E;
+            box-shadow: 0 0 0 3px rgba(214, 158, 46, 0.3);
+            outline: none;
+        }
+        
+        .input-field::placeholder {
+            color: #A0AEC0;
+        }
+
+        /* Animation for text */
+        @keyframes text-focus-in {
+            0% { filter: blur(12px); opacity: 0; }
+            100% { filter: blur(0px); opacity: 1; }
+        }
+        .text-focus-in { animation: text-focus-in 0.8s cubic-bezier(0.550, 0.085, 0.680, 0.530) both; }
+
+        /* Progress Bar */
+        #progress-bar-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(45, 55, 72, 0.5);
+        }
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #D69E2E;
+            transition: width 0.6s ease-out;
+        }
+
+    </style>
+</head>
+<body class="overflow-hidden">
+
+    <main id="funnel-container" class="relative h-screen w-screen">
+
+        <!-- Slide 1: The Personal Video Hook -->
+        <section id="slide-1" class="slide active flex flex-col justify-center items-center p-6 text-center">
+            <img src="https://placehold.co/300x450/1A202C/D69E2E?text=Video+of+Expert\n(Smiling+Warmly)" alt="A video of the agency expert smiling warmly" class="w-48 h-72 object-cover rounded-2xl shadow-2xl mb-8 border-2 border-gray-600">
+            <h1 class="text-4xl md:text-5xl font-bold mb-8 text-focus-in">Hi there! Glad you made it.</h1>
+            <button data-next="2" class="btn text-xl font-bold py-4 px-12 rounded-lg">Let's Start</button>
+        </section>
+
+        <!-- Slide 2: The Problem Identification -->
+        <section id="slide-2" class="slide flex flex-col justify-center items-center p-6 text-center">
+            <img src="https://placehold.co/150x150/1A202C/D69E2E?text=Expert" alt="The agency expert looking thoughtful" class="w-32 h-32 object-cover rounded-full shadow-2xl mb-6 border-2 border-gray-600">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 max-w-lg text-focus-in">What's your biggest advertising challenge right now?</h2>
+            <div class="w-full max-w-md flex flex-col gap-4">
+                <button data-challenge="waste" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full">Wasting Ad Spend Without Sales</button>
+                <button data-challenge="cpl" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full">Cost-Per-Lead is Too High</button>
+                <button data-challenge="consistency" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full">Struggling to Generate Consistent Sales</button>
+                <button data-challenge="scaling" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full">Difficulty Scaling Store Sales</button>
+            </div>
+        </section>
+
+        <!-- Slide 3: The Solution Introduction -->
+        <section id="slide-3" class="slide flex flex-col justify-center items-center p-6 text-center">
+            <img src="https://placehold.co/400x250/2D3748/D69E2E?text=Ad+Dashboard\n(Positive+Results)" alt="A screen recording of an ad campaign dashboard showing positive results" class="w-full max-w-md object-cover rounded-2xl shadow-2xl mb-8 border-2 border-gray-600">
+            <h2 id="solution-message" class="text-2xl md:text-3xl font-bold mb-6 max-w-lg text-focus-in">I see it all the time. We can fix that by...</h2>
+            <button data-next="4" id="solution-button" class="btn text-xl font-bold py-4 px-8 rounded-lg">...pinpointing every wasted penny.</button>
+        </section>
+
+        <!-- Slide 4: The Video Testimonial -->
+        <section id="slide-4" class="slide flex flex-col justify-center items-center p-6 text-center">
+            <div class="relative w-48 h-72 mb-6">
+                 <img src="https://placehold.co/300x450/1A202C/D69E2E?text=Happy+Client+Video" alt="A video testimonial from a happy client" class="w-full h-full object-cover rounded-2xl shadow-2xl border-2 border-gray-600">
+                 <div class="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 text-white p-3 rounded-b-2xl">
+                     <p class="font-bold text-sm">"Their audit found £5k in wasted spend in the first week."</p>
+                     <p class="text-xs mt-1">– John P., E-commerce Owner</p>
+                 </div>
+            </div>
+            <button data-next="5" class="btn text-xl font-bold py-4 px-12 rounded-lg">Wow, tell me more!</button>
+        </section>
+
+        <!-- Slide 5: The Specific Offer -->
+        <section id="slide-5" class="slide flex flex-col justify-center items-center p-6 text-center">
+            <img src="https://placehold.co/150x150/1A202C/D69E2E?text=Confident+Expert" alt="The agency expert looking confident and helpful" class="w-32 h-32 object-cover rounded-full shadow-2xl mb-6 border-2 border-gray-600">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 max-w-xl text-focus-in">I will personally conduct a free, no-obligation audit of your ad account to show you exactly where the opportunities are.</h2>
+            <button data-next="6" class="btn text-xl font-bold py-4 px-12 rounded-lg">Claim My Free Audit</button>
+        </section>
+
+        <!-- Slide 6: The Lead Capture Form -->
+        <section id="slide-6" class="slide flex flex-col justify-center items-center p-6">
+            <div class="w-full max-w-md text-center">
+                <h2 class="text-3xl font-bold mb-6 text-focus-in">Claim Your Free Ad Account Audit</h2>
+                <form id="lead-form" class="flex flex-col gap-4">
+                    <input type="text" placeholder="Enter your name" class="input-field w-full p-4 rounded-lg text-lg" required>
+                    <input type="email" placeholder="Enter your work email" class="input-field w-full p-4 rounded-lg text-lg" required>
+                    <input type="url" placeholder="Enter your website URL" class="input-field w-full p-4 rounded-lg text-lg" required>
+                    <select class="input-field w-full p-4 rounded-lg text-lg">
+                        <option value="" disabled selected>Monthly Ad Spend (Optional)</option>
+                        <option value="<5k">&lt; £5k</option>
+                        <option value="5k-15k">£5k - £15k</option>
+                        <option value="15k-30k">£15k - £30k</option>
+                        <option value="30k+">£30k+</option>
+                    </select>
+                    <button type="submit" class="btn text-xl font-bold py-4 px-12 rounded-lg mt-4">Get My Audit</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Slide 7: The Thank You & Next Steps -->
+        <section id="slide-7" class="slide flex flex-col justify-center items-center p-6 text-center">
+             <img src="https://placehold.co/150x150/1A202C/D69E2E?text=Logo/Expert" alt="Agency logo or smiling expert" class="w-32 h-32 object-cover rounded-full shadow-2xl mb-6 border-2 border-gray-600">
+            <h2 class="text-4xl font-bold mb-4 text-focus-in">Thank you!</h2>
+            <p class="text-xl mb-8">Your audit request is submitted.</p>
+            <div class="text-left bg-gray-800 bg-opacity-50 p-6 rounded-lg shadow-lg border border-gray-600 max-w-md">
+                <h3 class="font-bold text-lg mb-3 text-yellow-400">Here's what happens next:</h3>
+                <ol class="list-decimal list-inside space-y-2">
+                    <li>Check your email for a confirmation message from us.</li>
+                    <li>We will personally review your request.</li>
+                    <li>Our team will reach out within 1 business day to get started on your free audit!</li>
+                </ol>
+            </div>
+        </section>
+
+    </main>
+    
+    <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const funnelContainer = document.getElementById('funnel-container');
+            const progressBar = document.getElementById('progress-bar');
+            const totalSlides = 7;
+            let currentSlide = 1;
+
+            const solutionBranching = {
+                waste: { message: "I see it all the time. We can fix that by...", button: "...pinpointing every wasted penny." },
+                cpl: { message: "That's a classic profitability killer. We solve this by...", button: "...optimizing for higher-quality leads." },
+                consistency: { message: "You're not alone. The key is to...", button: "...build a predictable sales engine." },
+                scaling: { message: "Hitting a plateau is tough. We break through by...", button: "...unlocking new audiences ready to buy." }
+            };
+
+            const updateProgressBar = () => {
+                const progress = ((currentSlide -1) / (totalSlides - 1)) * 100;
+                progressBar.style.width = `${progress}%`;
+            };
+
+            const showSlide = (slideNumber) => {
+                const current = document.getElementById(`slide-${currentSlide}`);
+                const next = document.getElementById(`slide-${slideNumber}`);
+                
+                if (current) {
+                    current.classList.add('exit');
+                    // Wait for exit animation to finish before making it invisible
+                    setTimeout(() => {
+                        current.classList.remove('active');
+                        current.classList.remove('exit');
+                    }, 600);
+                }
+                
+                if (next) {
+                    // Animate text elements within the next slide
+                    next.querySelectorAll('.text-focus-in').forEach(el => {
+                        el.style.animation = 'none';
+                        el.offsetHeight; /* trigger reflow */
+                        el.style.animation = null; 
+                    });
+                    next.classList.add('active');
+                }
+                currentSlide = slideNumber;
+                updateProgressBar();
+            };
+
+            funnelContainer.addEventListener('click', (e) => {
+                const target = e.target.closest('button');
+                if (!target) return;
+
+                if (target.dataset.challenge) {
+                    const challenge = target.dataset.challenge;
+                    const { message, button } = solutionBranching[challenge];
+                    
+                    document.getElementById('solution-message').textContent = message;
+                    document.getElementById('solution-button').textContent = button;
+                    
+                    showSlide(3);
+                } else if (target.dataset.next) {
+                    const nextSlideNumber = parseInt(target.dataset.next, 10);
+                    showSlide(nextSlideNumber);
+                }
+            });
+
+            document.getElementById('lead-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                showSlide(7);
+            });
+            
+            // Initial progress bar state
+            updateProgressBar();
+        });
+    </script>
+
 </body>
 </html>
