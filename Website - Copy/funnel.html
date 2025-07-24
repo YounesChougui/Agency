@@ -3,12 +3,12 @@
 <head>
     <!-- 
         Chosen Palette: Digital Shift (derived from logo)
-        Application Structure Plan: The SPA has been re-architected into a hybrid model. It begins with a static, two-column landing page (Slide 0) designed for initial engagement and information delivery, based on the user's reference image. Clicking a choice on this landing page initiates the transition into the full-screen, step-by-step funnel (Slides 2-7). This structure provides a strong initial context and value proposition before immersing the user in the focused, interactive lead capture process.
+        Application Structure Plan: The SPA has been re-architected into a hybrid model. It begins with a static, scrollable landing page area containing the hero (Slide 0) and the "Why Paid Ads Matter" section. Clicking a choice on the hero initiates the transition into the full-screen, step-by-step funnel (Slides 3-7), which overlays the landing page content. This structure provides a strong initial context and value proposition before immersing the user in the focused, interactive lead capture process.
         Visualization & Content Choices:
-        - Landing Page (New Slide 0): Combines the hook (video, headline) and problem identification (choice buttons) into a single, clear, above-the-fold view. This is a more conventional and scannable starting point for users.
-        - Funnel Entry: The choice buttons on the landing page now serve as the primary entry point into the interactive funnel, making the "Let's Start" button from the original design redundant.
+        - Landing Page (New Structure): The hero and "Why Paid Ads" sections are now in a normal document flow within a dedicated container, allowing for scrolling.
+        - Funnel Entry: The choice buttons on the hero now hide the landing page container and initiate the full-screen funnel experience.
         - Funnel Flow: Once initiated, the funnel retains its proven slide-based structure, animations, and branching logic to maintain high engagement. The progress bar is now hidden on the landing page and only appears upon entering the funnel.
-        - Restart Logic: The "Start Over" button now correctly returns the user to the initial landing page view (Slide 0).
+        - Restart Logic: The "Start Over" button now correctly hides the funnel and reveals the landing page container.
         - Form Update: A phone number field has been added. Responsiveness of the landing page headline has been improved.
         CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
     -->
@@ -34,6 +34,16 @@
             height: 100%;
             z-index: -1;
         }
+        
+        #funnel-slides-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
 
         .slide {
             position: absolute;
@@ -48,12 +58,14 @@
             justify-content: center;
             align-items: center;
             overflow-y: auto;
+            pointer-events: none;
         }
 
         .slide.active {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
+            pointer-events: auto;
         }
         
         .slide.exit {
@@ -131,6 +143,7 @@
             width: 100%;
             height: 8px;
             background-color: rgba(36, 41, 47, 0.5);
+            z-index: 20;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.5s, visibility 0.5s;
@@ -187,218 +200,177 @@
 
     </style>
 </head>
-<body class="overflow-hidden">
+<body>
 
     <canvas id="canvas-background"></canvas>
 
-    <main id="funnel-container" class="relative h-screen w-screen">
+    <main id="funnel-container">
 
-        <!-- Slide 0: The Landing Page -->
-        <section id="slide-0" class="slide active p-6">
-            <div class="w-full max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-                <!-- Left Column -->
-                <div class="text-center md:text-left">
-                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/1753297396707.jpg-dd84e674-0754-4d6f-bc3b-5ce65ead8503" alt="Shift Agency Logo" class="h-12 mx-auto md:mx-0 mb-6">
-                    <p class="text-blue-400 font-semibold mb-2">Free Expert Ad Account Audit</p>
-                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight">Master Ads & Scale Your Business with Confidence!</h1>
-                    <p class="text-lg text-gray-400 mb-6">The proven system to generate consistent leads and sales using online advertising.</p>
-                    <img src="https://placehold.co/300x168/0d1117/0052FF?text=Video+of+Expert" alt="A video of the agency expert" class="w-full max-w-sm mx-auto md:mx-0 rounded-2xl shadow-2xl mb-6 border-2 border-gray-700">
-                    <div class="flex items-center justify-center md:justify-start gap-2 text-yellow-400">
-                        <span>★★★★★</span>
+        <!-- Landing Page Container -->
+        <div id="landing-page-container">
+            <!-- Hero Section -->
+            <section id="hero-section" class="min-h-screen flex items-center p-6">
+                <div class="w-full max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+                    <!-- Left Column -->
+                    <div class="text-center md:text-left">
+                        <img src="https://storage.googleapis.com/gemini-generative-ai-dev/1753297396707.jpg-dd84e674-0754-4d6f-bc3b-5ce65ead8503" alt="Shift Agency Logo" class="h-12 mx-auto md:mx-0 mb-6">
+                        <p class="text-blue-400 font-semibold mb-2">Free Expert Ad Account Audit</p>
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight">Master Ads & Scale Your Business with Confidence!</h1>
+                        <p class="text-lg text-gray-400 mb-6">The proven system to generate consistent leads and sales using online advertising.</p>
+                        <img src="https://placehold.co/300x168/0d1117/0052FF?text=Video+of+Expert" alt="A video of the agency expert" class="w-full max-w-sm mx-auto md:mx-0 rounded-2xl shadow-2xl mb-6 border-2 border-gray-700">
+                        <div class="flex items-center justify-center md:justify-start gap-2 text-yellow-400">
+                            <span>★★★★★</span>
+                        </div>
+                        <p class="text-gray-400 mt-2">"Must-have for every founder"</p>
                     </div>
-                    <p class="text-gray-400 mt-2">"Must-have for every founder"</p>
-                </div>
 
-                <!-- Right Column -->
-                <div class="w-full bg-gray-900 bg-opacity-40 border border-gray-700 rounded-2xl p-8 shadow-2xl backdrop-filter backdrop-blur-sm">
-                    <p class="text-blue-400 font-semibold mb-2 text-center">Take the Test & Find Your Level</p>
-                    <h2 class="text-2xl font-bold mb-6 text-center">What's your experience with paid advertising?</h2>
-                    <div class="w-full flex flex-col gap-4">
-                        <button data-challenge="waste" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full text-left flex items-center gap-4">🎓<span>I've never run ads before</span></button>
-                        <button data-challenge="cpl" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full text-left flex items-center gap-4">🤔<span>I've tried running ads but didn't get results</span></button>
-                        <button data-challenge="consistency" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full text-left flex items-center gap-4">📈<span>I run ads but struggle to scale profitably</span></button>
-                        <button data-challenge="scaling" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full text-left flex items-center gap-4">🚀<span>I already run successful ad campaigns</span></button>
+                    <!-- Right Column -->
+                    <div class="w-full bg-gray-900 bg-opacity-40 border border-gray-700 rounded-2xl p-8 shadow-2xl backdrop-filter backdrop-blur-sm">
+                        <p class="text-blue-400 font-semibold mb-2 text-center">Take the Test & Find Your Level</p>
+                        <h2 class="text-2xl font-bold mb-6 text-center">What's your experience with paid advertising?</h2>
+                        <div class="w-full flex flex-col gap-4">
+                            <button data-challenge="waste" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full text-left flex items-center gap-4">🎓<span>I've never run ads before</span></button>
+                            <button data-challenge="cpl" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full text-left flex items-center gap-4">🤔<span>I've tried running ads but didn't get results</span></button>
+                            <button data-challenge="consistency" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full text-left flex items-center gap-4">📈<span>I run ads but struggle to scale profitably</span></button>
+                            <button data-challenge="scaling" class="choice-btn text-lg font-semibold p-4 rounded-lg w-full text-left flex items-center gap-4">🚀<span>I already run successful ad campaigns</span></button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-<!-- ▼▼▼ COPY FROM HERE ▼▼▼ -->
-<section class="w-full py-16 sm:py-24">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <!-- "As Seen On" Logos -->
-        <div class="text-center mb-12">
-            <p class="text-sm text-gray-400 mb-4">As seen and reported about in</p>
-            <div class="flex justify-center items-center gap-6 sm:gap-10 text-gray-500 font-bold">
-                <span class="text-lg">VOXMEDIA</span>
-                <span class="text-lg">AT&T</span>
-                <span class="text-2xl">YAHOO!</span>
-                <span class="text-lg">CNBC</span>
-                <span class="text-2xl">BBC</span>
-            </div>
+            </section>
+
+            <!-- Why Paid Ads Matter Section -->
+            <section class="w-full py-16 sm:py-24">
+                <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <p class="text-sm text-gray-400 mb-4">As seen and reported about in</p>
+                        <div class="flex justify-center items-center gap-6 sm:gap-10 text-gray-500 font-bold flex-wrap">
+                            <span class="text-lg">VOXMEDIA</span>
+                            <span class="text-lg">AT&T</span>
+                            <span class="text-2xl">YAHOO!</span>
+                            <span class="text-lg">CNBC</span>
+                            <span class="text-2xl">BBC</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 bg-opacity-40 border border-gray-700 rounded-2xl p-8 sm:p-12 shadow-2xl backdrop-filter backdrop-blur-sm">
+                        <div class="max-w-4xl mx-auto text-center">
+                            <p class="font-semibold text-blue-400 mb-2">Why Paid Ads Matter</p>
+                            <h2 class="text-3xl sm:text-4xl font-bold leading-tight">Paid advertising has the potential to skyrocket your business, but most people fail before they even get started. Here's why:</h2>
+                        </div>
+                        <div class="mt-12 grid md:grid-cols-2 gap-x-12 gap-y-10">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-8 h-8 bg-red-500/20 border border-red-500 rounded-full flex items-center justify-center"><span class="font-bold text-red-400 text-lg">×</span></div>
+                                <div>
+                                    <h3 class="font-semibold text-lg">They don't know where to start.</h3>
+                                    <p class="text-gray-400 mt-1">With so many platforms, strategies, and ad types, the learning curve feels overwhelming. Many give up before they ever see results.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-8 h-8 bg-red-500/20 border border-red-500 rounded-full flex items-center justify-center"><span class="font-bold text-red-400 text-lg">×</span></div>
+                                <div>
+                                    <h3 class="font-semibold text-lg">They waste money on ads that don't convert.</h3>
+                                    <p class="text-gray-400 mt-1">Running ads without a strategy is like throwing money into a fire. Without proper targeting, optimization, and testing, campaigns fail fast.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-8 h-8 bg-red-500/20 border border-red-500 rounded-full flex items-center justify-center"><span class="font-bold text-red-400 text-lg">×</span></div>
+                                <div>
+                                    <h3 class="font-semibold text-lg">They struggle to track and measure performance.</h3>
+                                    <p class="text-gray-400 mt-1">Many advertisers don't know how to interpret data correctly, leading to poor decisions and lost ad spend.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-8 h-8 bg-red-500/20 border border-red-500 rounded-full flex items-center justify-center"><span class="font-bold text-red-400 text-lg">×</span></div>
+                                <div>
+                                    <h3 class="font-semibold text-lg">They have no system to scale profitably.</h3>
+                                    <p class="text-gray-400 mt-1">Even those who get some results often hit a wall. Without a proven structure for optimizing and scaling, growth stalls and ad costs spiral out of control.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <!-- Main Content Card -->
-        <div class="bg-gray-900 bg-opacity-40 border border-gray-700 rounded-2xl p-8 sm:p-12 shadow-2xl backdrop-filter backdrop-blur-sm">
-            <div class="max-w-4xl mx-auto text-center">
-                <p class="font-semibold text-blue-400 mb-2">Why Paid Ads Matter</p>
-                <h2 class="text-3xl sm:text-4xl font-bold leading-tight">
-                    Paid advertising has the potential to skyrocket your business, but most people fail before they even get started. Here's why:
-                </h2>
-            </div>
-            
-            <div class="mt-12 grid md:grid-cols-2 gap-x-12 gap-y-10">
-                <!-- Point 1 -->
-                <div class="flex items-start gap-4">
-                    <div class="flex-shrink-0 w-8 h-8 bg-red-500/20 border border-red-500 rounded-full flex items-center justify-center">
-                        <span class="font-bold text-red-400 text-lg">×</span>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-lg">They don't know where to start.</h3>
-                        <p class="text-gray-400 mt-1">With so many platforms, strategies, and ad types, the learning curve feels overwhelming. Many give up before they ever see results.</p>
-                    </div>
-                </div>
+        <!-- Funnel Slides Container -->
+        <div id="funnel-slides-container">
+            <section id="slide-3" class="slide p-6 text-center">
+                <img src="https://placehold.co/400x250/161b22/0052FF?text=Ad+Dashboard\n(Positive+Results)" alt="A screen recording of an ad campaign dashboard showing positive results" class="w-full max-w-md object-cover rounded-2xl shadow-2xl mb-8 border-2 border-gray-700">
+                <h2 id="solution-message" class="text-2xl md:text-3xl font-bold mb-6 max-w-lg text-focus-in">I see it all the time. We can fix that by...</h2>
+                <button data-next="4" id="solution-button" class="btn text-xl font-bold py-4 px-8 rounded-lg">...pinpointing every wasted penny.</button>
+            </section>
 
-                <!-- Point 2 -->
-                <div class="flex items-start gap-4">
-                    <div class="flex-shrink-0 w-8 h-8 bg-red-500/20 border border-red-500 rounded-full flex items-center justify-center">
-                        <span class="font-bold text-red-400 text-lg">×</span>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-lg">They waste money on ads that don't convert.</h3>
-                        <p class="text-gray-400 mt-1">Running ads without a strategy is like throwing money into a fire. Without proper targeting, optimization, and testing, campaigns fail fast.</p>
-                    </div>
+            <section id="slide-4" class="slide p-6 text-center">
+                <div class="relative w-48 h-72 mb-6">
+                     <img src="https://placehold.co/300x450/0d1117/0052FF?text=Happy+Client+Video" alt="A video testimonial from a happy client" class="w-full h-full object-cover rounded-2xl shadow-2xl border-2 border-gray-700">
+                     <div class="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 text-white p-3 rounded-b-2xl">
+                         <p class="font-bold text-sm">"Their audit found £5k in wasted spend in the first week."</p>
+                         <p class="text-xs mt-1">– John P., E-commerce Owner</p>
+                     </div>
                 </div>
+                <button data-next="5" class="btn text-xl font-bold py-4 px-12 rounded-lg">Wow, tell me more!</button>
+            </section>
 
-                <!-- Point 3 -->
-                <div class="flex items-start gap-4">
-                    <div class="flex-shrink-0 w-8 h-8 bg-red-500/20 border border-red-500 rounded-full flex items-center justify-center">
-                        <span class="font-bold text-red-400 text-lg">×</span>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-lg">They struggle to track and measure performance.</h3>
-                        <p class="text-gray-400 mt-1">Many advertisers don't know how to interpret data correctly, leading to poor decisions and lost ad spend.</p>
-                    </div>
-                </div>
+            <section id="slide-5" class="slide p-6 text-center">
+                <img src="https://placehold.co/150x150/0d1117/0052FF?text=Confident+Expert" alt="The agency expert looking confident and helpful" class="w-32 h-32 object-cover rounded-full shadow-2xl mb-6 border-2 border-gray-700">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 max-w-xl text-focus-in">I will personally conduct a free, no-obligation audit of your ad account to show you exactly where the opportunities are.</h2>
+                <button data-next="5.5" class="btn text-xl font-bold py-4 px-12 rounded-lg">Claim My Free Audit</button>
+            </section>
 
-                <!-- Point 4 -->
-                <div class="flex items-start gap-4">
-                    <div class="flex-shrink-0 w-8 h-8 bg-red-500/20 border border-red-500 rounded-full flex items-center justify-center">
-                        <span class="font-bold text-red-400 text-lg">×</span>
+            <section id="slide-5.5" class="slide p-6 text-center">
+                <div class="loader mb-8"></div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-focus-in">Validating your Answers</h2>
+                <p class="text-lg text-gray-400">This only takes a few seconds...</p>
+            </section>
+
+            <section id="slide-6" class="slide p-6">
+                <div class="w-full max-w-lg bg-gray-900 bg-opacity-40 border border-gray-700 rounded-2xl p-8 md:p-12 shadow-2xl text-center backdrop-filter backdrop-blur-sm">
+                    <div class="w-16 h-16 bg-green-500/20 border-2 border-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-4xl text-green-400">✓</span>
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-lg">They have no system to scale profitably.</h3>
-                        <p class="text-gray-400 mt-1">Even those who get some results often hit a wall. Without a proven structure for optimizing and scaling, growth stalls and ad costs spiral out of control.</p>
+                    <p class="text-green-400 font-semibold mb-2">Your Audit is Ready</p>
+                    <h2 class="text-2xl md:text-3xl font-bold mb-8 text-focus-in">Where should we send your free expert ad account audit?</h2>
+                    <form id="lead-form" class="flex flex-col gap-5 text-left">
+                        <div class="relative"><span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-400">👤</span><input type="text" name="name" placeholder="Your first name" class="input-field w-full p-4 pl-12 rounded-lg text-lg" required></div>
+                        <div class="relative"><span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-400">@</span><input type="email" name="email" placeholder="Your email address" class="input-field w-full p-4 pl-12 rounded-lg text-lg" required></div>
+                        <div class="relative"><span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-400">📞</span><input type="tel" name="phone" placeholder="Your phone number (Optional)" class="input-field w-full p-4 pl-12 rounded-lg text-lg"></div>
+                        <div class="relative"><span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-400">🌐</span><input type="url" name="website" placeholder="Your website URL" class="input-field w-full p-4 pl-12 rounded-lg text-lg" required></div>
+                        <div class="mt-2">
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input type="checkbox" id="privacy-check" class="hidden peer">
+                                <span class="w-6 h-6 border-2 border-gray-500 rounded-md flex items-center justify-center text-white text-opacity-0 peer-checked:text-opacity-100 peer-checked:bg-blue-600 peer-checked:border-blue-600 transition-all duration-300 group-hover:border-blue-500">✓</span>
+                                <span class="text-gray-400">I have read and accept the <a href="#" class="text-blue-400 hover:underline">privacy policy</a>.</span>
+                            </label>
+                            <p id="privacy-error" class="text-red-500 text-sm mt-2 hidden pl-9">This is a required field.</p>
+                        </div>
+                        <button type="submit" class="btn text-xl font-bold py-4 px-12 rounded-lg mt-6">Show Results Now</button>
+                    </form>
+                </div>
+            </section>
+
+            <section id="slide-7" class="slide p-6 text-center">
+                <div class="flex flex-col justify-center items-center h-full w-full max-w-md">
+                    <div class="flex-grow flex flex-col justify-center items-center w-full">
+                        <img src="https://storage.googleapis.com/gemini-generative-ai-dev/1753297396707.jpg-dd84e674-0754-4d6f-bc3b-5ce65ead8503" alt="Shift Agency Logo" class="h-16 mb-6">
+                        <h2 class="text-4xl font-bold mb-4 text-focus-in">Thank you!</h2>
+                        <p class="text-xl mb-8">Your audit request is submitted.</p>
+                        <div class="text-left bg-gray-900 bg-opacity-50 p-6 rounded-lg shadow-lg border border-gray-700 w-full mb-8">
+                            <h3 class="font-bold text-lg mb-3 text-blue-400">Here's what happens next:</h3>
+                            <ol class="list-decimal list-inside space-y-2">
+                                <li>Check your email for a confirmation message from us.</li>
+                                <li>We will personally review your request.</li>
+                                <li>Our team will reach out within 1 business day to get started!</li>
+                            </ol>
+                        </div>
+                        <button data-restart="0" class="restart-btn text-lg font-semibold py-3 px-10 rounded-lg">Start Over</button>
+                    </div>
+                    <div class="w-full pt-8 pb-4">
+                        <p class="text-gray-400 mb-3">Follow us for marketing tips & updates:</p>
+                        <div class="flex justify-center gap-6 mb-4"><a href="#" class="social-link" title="X/Twitter">𝕏</a><a href="#" class="social-link" title="LinkedIn" style="font-family: sans-serif; font-weight: bold;">in</a><a href="#" class="social-link" title="Facebook" style="font-family: sans-serif; font-weight: bold;">f</a></div>
+                        <div class="text-xs text-gray-500"><a href="#" class="hover:text-blue-400 transition-colors">Terms & Conditions</a> | <a href="#" class="hover:text-blue-400 transition-colors">Privacy Policy</a></div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </div>
-</section>
-<!-- ▲▲▲ COPY UNTIL HERE ▲▲▲ -->
-        <!-- Slide 3: The Solution Introduction -->
-        <section id="slide-3" class="slide p-6 text-center">
-            <img src="https://placehold.co/400x250/161b22/0052FF?text=Ad+Dashboard\n(Positive+Results)" alt="A screen recording of an ad campaign dashboard showing positive results" class="w-full max-w-md object-cover rounded-2xl shadow-2xl mb-8 border-2 border-gray-700">
-            <h2 id="solution-message" class="text-2xl md:text-3xl font-bold mb-6 max-w-lg text-focus-in">I see it all the time. We can fix that by...</h2>
-            <button data-next="4" id="solution-button" class="btn text-xl font-bold py-4 px-8 rounded-lg">...pinpointing every wasted penny.</button>
-        </section>
-
-        <!-- Slide 4: The Video Testimonial -->
-        <section id="slide-4" class="slide p-6 text-center">
-            <div class="relative w-48 h-72 mb-6">
-                 <img src="https://placehold.co/300x450/0d1117/0052FF?text=Happy+Client+Video" alt="A video testimonial from a happy client" class="w-full h-full object-cover rounded-2xl shadow-2xl border-2 border-gray-700">
-                 <div class="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 text-white p-3 rounded-b-2xl">
-                     <p class="font-bold text-sm">"Their audit found £5k in wasted spend in the first week."</p>
-                     <p class="text-xs mt-1">– John P., E-commerce Owner</p>
-                 </div>
-            </div>
-            <button data-next="5" class="btn text-xl font-bold py-4 px-12 rounded-lg">Wow, tell me more!</button>
-        </section>
-
-        <!-- Slide 5: The Specific Offer -->
-        <section id="slide-5" class="slide p-6 text-center">
-            <img src="https://placehold.co/150x150/0d1117/0052FF?text=Confident+Expert" alt="The agency expert looking confident and helpful" class="w-32 h-32 object-cover rounded-full shadow-2xl mb-6 border-2 border-gray-700">
-            <h2 class="text-2xl md:text-3xl font-bold mb-8 max-w-xl text-focus-in">I will personally conduct a free, no-obligation audit of your ad account to show you exactly where the opportunities are.</h2>
-            <button data-next="5.5" class="btn text-xl font-bold py-4 px-12 rounded-lg">Claim My Free Audit</button>
-        </section>
-
-        <!-- Slide 5.5: Validating Answers -->
-        <section id="slide-5.5" class="slide p-6 text-center">
-            <div class="loader mb-8"></div>
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-focus-in">Validating your Answers</h2>
-            <p class="text-lg text-gray-400">This only takes a few seconds...</p>
-        </section>
-
-        <!-- Slide 6: The Lead Capture Form (New Design) -->
-        <section id="slide-6" class="slide p-6">
-            <div class="w-full max-w-lg bg-gray-900 bg-opacity-40 border border-gray-700 rounded-2xl p-8 md:p-12 shadow-2xl text-center backdrop-filter backdrop-blur-sm">
-                <div class="w-16 h-16 bg-green-500/20 border-2 border-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="text-4xl text-green-400">✓</span>
-                </div>
-                <p class="text-green-400 font-semibold mb-2">Your Audit is Ready</p>
-                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-focus-in">Where should we send your free expert ad account audit?</h2>
-                <form id="lead-form" class="flex flex-col gap-5 text-left">
-                    <div class="relative">
-                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-400">👤</span>
-                        <input type="text" name="name" placeholder="Your first name" class="input-field w-full p-4 pl-12 rounded-lg text-lg" required>
-                    </div>
-                    <div class="relative">
-                         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-400">@</span>
-                        <input type="email" name="email" placeholder="Your email address" class="input-field w-full p-4 pl-12 rounded-lg text-lg" required>
-                    </div>
-                    <div class="relative">
-                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-400">📞</span>
-                        <input type="tel" name="phone" placeholder="Your phone number (Optional)" class="input-field w-full p-4 pl-12 rounded-lg text-lg">
-                    </div>
-                    <div class="relative">
-                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-400">🌐</span>
-                        <input type="url" name="website" placeholder="Your website URL" class="input-field w-full p-4 pl-12 rounded-lg text-lg" required>
-                    </div>
-                    <div class="mt-2">
-                        <label class="flex items-center gap-3 cursor-pointer group">
-                            <input type="checkbox" id="privacy-check" class="hidden peer">
-                            <span class="w-6 h-6 border-2 border-gray-500 rounded-md flex items-center justify-center text-white text-opacity-0 peer-checked:text-opacity-100 peer-checked:bg-blue-600 peer-checked:border-blue-600 transition-all duration-300 group-hover:border-blue-500">
-                               ✓
-                            </span>
-                            <span class="text-gray-400">I have read and accept the <a href="#" class="text-blue-400 hover:underline">privacy policy</a>.</span>
-                        </label>
-                        <p id="privacy-error" class="text-red-500 text-sm mt-2 hidden pl-9">This is a required field.</p>
-                    </div>
-                    <button type="submit" class="btn text-xl font-bold py-4 px-12 rounded-lg mt-6">Show Results Now</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- Slide 7: The Thank You & Next Steps (New Design) -->
-        <section id="slide-7" class="slide p-6 text-center">
-            <div class="flex flex-col justify-center items-center h-full w-full max-w-md">
-                <div class="flex-grow flex flex-col justify-center items-center w-full">
-                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/1753297396707.jpg-dd84e674-0754-4d6f-bc3b-5ce65ead8503" alt="Shift Agency Logo" class="h-16 mb-6">
-                    <h2 class="text-4xl font-bold mb-4 text-focus-in">Thank you!</h2>
-                    <p class="text-xl mb-8">Your audit request is submitted.</p>
-                    <div class="text-left bg-gray-900 bg-opacity-50 p-6 rounded-lg shadow-lg border border-gray-700 w-full mb-8">
-                        <h3 class="font-bold text-lg mb-3 text-blue-400">Here's what happens next:</h3>
-                        <ol class="list-decimal list-inside space-y-2">
-                            <li>Check your email for a confirmation message from us.</li>
-                            <li>We will personally review your request.</li>
-                            <li>Our team will reach out within 1 business day to get started!</li>
-                        </ol>
-                    </div>
-                    <button data-restart="0" class="restart-btn text-lg font-semibold py-3 px-10 rounded-lg">Start Over</button>
-                </div>
-                <div class="w-full pt-8 pb-4">
-                    <p class="text-gray-400 mb-3">Follow us for marketing tips & updates:</p>
-                    <div class="flex justify-center gap-6 mb-4">
-                        <a href="#" class="social-link" title="X/Twitter">𝕏</a>
-                        <a href="#" class="social-link" title="LinkedIn" style="font-family: sans-serif; font-weight: bold;">in</a>
-                        <a href="#" class="social-link" title="Facebook" style="font-family: sans-serif; font-weight: bold;">f</a>
-                    </div>
-                    <div class="text-xs text-gray-500">
-                        <a href="#" class="hover:text-blue-400 transition-colors">Terms & Conditions</a> | <a href="#" class="hover:text-blue-400 transition-colors">Privacy Policy</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
     
     <div id="progress-bar-container">
@@ -408,9 +380,11 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const funnelContainer = document.getElementById('funnel-container');
+            const landingPageContainer = document.getElementById('landing-page-container');
+            const funnelSlidesContainer = document.getElementById('funnel-slides-container');
             const progressBarContainer = document.getElementById('progress-bar-container');
             const progressBar = document.getElementById('progress-bar');
-            const totalFunnelSteps = 6; // Total steps *within the funnel* (Slide 3 to 7)
+            const totalFunnelSteps = 6;
             let currentSlideId = '0';
 
             const solutionBranching = {
@@ -422,8 +396,8 @@
 
             const getProgress = (slideId) => {
                 const step = parseFloat(slideId);
-                if (step < 3) return 0; // No progress until funnel starts
-                const funnelStep = step - 2; // Funnel starts at step 1 (slide 3)
+                if (step < 3) return 0;
+                const funnelStep = step - 2;
                 return ((funnelStep - 1) / (totalFunnelSteps - 1)) * 100;
             };
 
@@ -438,16 +412,17 @@
             };
 
             const showSlide = (slideId) => {
-                const current = document.getElementById(`slide-${currentSlideId}`);
-                const next = document.getElementById(`slide-${slideId}`);
-                
-                if (current) {
-                    current.classList.add('exit');
-                    setTimeout(() => {
-                        current.classList.remove('active', 'exit');
-                    }, 600);
+                if (currentSlideId !== '0') {
+                    const current = document.getElementById(`slide-${currentSlideId}`);
+                    if (current) {
+                        current.classList.add('exit');
+                        setTimeout(() => {
+                            current.classList.remove('active', 'exit');
+                        }, 600);
+                    }
                 }
-                
+
+                const next = document.getElementById(`slide-${slideId}`);
                 if (next) {
                     next.querySelectorAll('.text-focus-in').forEach(el => {
                         el.style.animation = 'none';
@@ -471,25 +446,46 @@
             const privacyCheck = document.getElementById('privacy-check');
             const privacyError = document.getElementById('privacy-error');
 
-            funnelContainer.addEventListener('click', (e) => {
+            const startFunnel = (challenge) => {
+                document.body.style.overflow = 'hidden';
+                landingPageContainer.style.display = 'none';
+                
+                const { message, button } = solutionBranching[challenge];
+                document.getElementById('solution-message').textContent = message;
+                document.getElementById('solution-button').textContent = button;
+                
+                showSlide('3');
+            };
+
+            const endFunnel = () => {
+                document.body.style.overflow = '';
+                landingPageContainer.style.display = 'block';
+                
+                const current = document.getElementById(`slide-${currentSlideId}`);
+                if (current) {
+                    current.classList.remove('active');
+                }
+                currentSlideId = '0';
+                updateProgressBar('0');
+            };
+
+            landingPageContainer.addEventListener('click', (e) => {
+                const target = e.target.closest('button[data-challenge]');
+                if (target) {
+                    startFunnel(target.dataset.challenge);
+                }
+            });
+
+            funnelSlidesContainer.addEventListener('click', (e) => {
                 const target = e.target.closest('button');
                 if (!target) return;
 
-                if (target.dataset.challenge) {
-                    const challenge = target.dataset.challenge;
-                    const { message, button } = solutionBranching[challenge];
-                    
-                    document.getElementById('solution-message').textContent = message;
-                    document.getElementById('solution-button').textContent = button;
-                    
-                    showSlide('3');
-                } else if (target.dataset.next) {
-                    const nextSlideId = target.dataset.next;
-                    showSlide(nextSlideId);
+                if (target.dataset.next) {
+                    showSlide(target.dataset.next);
                 } else if (target.dataset.restart) {
                     leadForm.reset();
                     privacyError.classList.add('hidden');
-                    showSlide('0');
+                    endFunnel();
                 }
             });
 
