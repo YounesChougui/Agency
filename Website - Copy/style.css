@@ -681,7 +681,7 @@ body {
 @media (max-width: 768px) {
     /* Hide nav links, show a menu icon (not implemented in this version) */
     .nav-links {
-       
+       display:none;
     }
     
     .hero-headline {
