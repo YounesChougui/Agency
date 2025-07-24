@@ -226,9 +226,11 @@
             box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.3);
             outline: none;
         }
-        .max-w-7xl           /* Simulating a dark page background for contrast */{
-            background-color: #0d1117;
-        }
+
+.custom-white-bg {
+    background-color: #0d1117; /* Simulating a dark page background for contrast */
+}
+
         .final-cta-btn {
             background-color: #0052FF;
             color: #FFFFFF;
@@ -434,38 +436,11 @@
     </div>
 </section>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimonials Section</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0d1117;
-            color: #E2E8F0;
-        }
-        .final-cta-btn {
-            background-color: #0052FF;
-            color: #FFFFFF;
-            transition: all 0.3s ease;
-        }
-        .final-cta-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 82, 255, 0.25);
-        }
-    </style>
-</head>
 <body class="p-8">
 
 <!-- ▼▼▼ COPY FROM HERE ▼▼▼ -->
 <section class="w-full py-16 sm:py-24 bg-white rounded-3xl">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 custom-dark-bg">
         <!-- Section Header -->
         <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <h2 class="text-4xl sm:text-5xl font-bold leading-tight text-gray-900">Trusted and recommended by industry leaders worldwide</h2>
