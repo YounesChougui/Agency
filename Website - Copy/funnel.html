@@ -135,6 +135,20 @@
             transition: width 0.6s ease-out;
         }
 
+.loader {
+    border: 6px solid #30363d; /* Loader background */
+    border-top: 6px solid #0052FF; /* Loader active color */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
     </style>
 </head>
 <body class="overflow-hidden">
@@ -185,6 +199,13 @@
             <h2 class="text-2xl md:text-3xl font-bold mb-8 max-w-xl text-focus-in">I will personally conduct a free, no-obligation audit of your ad account to show you exactly where the opportunities are.</h2>
             <button data-next="6" class="btn text-xl font-bold py-4 px-12 rounded-lg">Claim My Free Audit</button>
         </section>
+
+<!-- Slide 5.5: Validating Answers -->
+<section id="slide-5-5" class="slide flex flex-col justify-center items-center p-6 text-center">
+    <div class="loader mb-8"></div>
+    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-focus-in">Validating your Answers</h2>
+    <p class="text-lg text-gray-400">This only takes a few seconds...</p>
+</section>
 
         <!-- Slide 6: The Lead Capture Form -->
         <section id="slide-6" class="slide flex flex-col justify-center items-center p-6">
