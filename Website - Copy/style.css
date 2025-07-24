@@ -704,5 +704,37 @@ body {
     .contact-form button {
         grid-column: span 1 !important;
     }
-}
+.nav-links {
+        /* ... existing styles ... */
+        /* Add new styles for mobile menu appearance */
+        position: fixed;
+        top: 80px; /* Position below the header */
+        right: -100%; /* Start off-screen */
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: var(--bg-secondary-color);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        transition: right 0.4s ease-in-out;
+    }
 
+    .nav-links.active {
+        right: 0; /* Slide in when active */
+    }
+
+    .mobile-nav-toggle {
+        display: block; /* Show the button on mobile */
+    }
+}
+/* Style for the mobile navigation toggle */
+.mobile-nav-toggle {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: var(--text-color);
+    z-index: 1001; /* Make sure it's on top */
+}
