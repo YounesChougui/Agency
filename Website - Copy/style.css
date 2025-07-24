@@ -692,23 +692,29 @@ body {
 /* --- Responsive Design --- */
 @media (max-width: 768px) {
     .nav-links {
-        /* ... existing styles ... */
-        /* Add new styles for mobile menu appearance */
-        position: fixed;
-        top: 80px; /* Position below the header */
-        right: -100%; /* Start off-screen */
+        /* These styles create the drop-down effect */
+        position: absolute; /* Changed from fixed */
+        top: 80px;      /* Position it right below the header */
+        left: 0;
+        right: 0;
         width: 100%;
-        height: calc(100vh - 80px);
         background-color: var(--bg-secondary-color);
+
+        /* Animation setup */
+        display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        gap: 40px;
-        transition: right 0.4s ease-in-out;
+        gap: 20px;
+        padding: 0; /* No padding when closed */
+        max-height: 0; /* Start with no height */
+        overflow: hidden; /* Crucial: hide the content when closed */
+        transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
     }
 
     .nav-links.active {
-        right: 0; /* Slide in when active */
+        /* When active, give it height and padding to reveal it */
+        max-height: 50vh; 
+        padding: 30px 0;
     }
 
     .mobile-nav-toggle {
