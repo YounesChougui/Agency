@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strategic SEO Services | Stellar Digital</title>
     
+    <!-- Corrected Stylesheet Links -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="service-style.css">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+
+    <!-- Swiper for Portfolio Slider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
 
+<!-- ====================================================== -->
+<!-- ==     1. STANDARDIZED HEADER (FIXED)               == -->
+<!-- ====================================================== -->
 <header class="main-header">
     <nav class="main-nav">
         <a href="../index.html" class="nav-logo">Stellar Digital</a>
@@ -27,6 +34,7 @@
             <i class="ph-bold ph-sun"></i>
             <i class="ph-bold ph-moon"></i>
         </button>
+        <!-- Mobile Menu Button -->
         <button class="mobile-nav-toggle" aria-label="Toggle navigation">
             <i class="ph-bold ph-list"></i>
         </button>
@@ -35,6 +43,9 @@
 
 <main class="service-page-main">
 
+    <!-- ====================================================== -->
+    <!-- ==     2. DYNAMIC HERO SECTION (SEO FOCUSED)        == -->
+    <!-- ====================================================== -->
     <section class="dynamic-hero">
         <div class="hero-background-shapes"></div>
         <div class="container">
@@ -50,6 +61,9 @@
         </div>
     </section>
 
+    <!-- ====================================================== -->
+    <!-- ==     3. DETAILED SERVICES (NOW WITH TABS!)        == -->
+    <!-- ====================================================== -->
     <section class="detailed-services-section">
         <div class="tech-bar">
             <div class="container">
@@ -58,52 +72,68 @@
                 <div class="tech-logo"><i class="ph ph-magnifying-glass"></i><span>SEMrush</span></div>
                 <div class="tech-logo"><i class="ph ph-file-text"></i><span>Screaming Frog</span></div>
                 <div class="tech-logo"><i class="ph-brands ph-wordpress-logo"></i><span>WordPress</span></div>
-                <div class="tech-logo"></i><span>Shopify</span></div>
+                <div class="tech-logo"><i class="ph-bold ph-shopping-bag-open"></i><span>Shopify</span></div>
             </div>
         </div>
 
         <div class="container section-content">
             <div class="section-heading">
-                <h2>Results-Driven SEO Agency</h2>
+                <h2>Our SEO Services</h2>
                 <a href="#contact" class="start-project-link">
                     <span>Start Your Project</span>
                     <i class="ph-bold ph-arrow-right"></i>
                 </a>
             </div>
             <div class="section-description">
-                <p>Whether you're looking to climb the rankings, recover from a penalty, or build a content strategy that converts, our in-house team of SEO experts is ready to help.</p>
-                <p>We craft bespoke strategies for platforms like <strong>WordPress and Shopify</strong>, ensuring every technical detail is optimized for peak search performance. Get in touch to see how we can help you grow.</p>
+                <p>We provide a comprehensive suite of SEO services designed to build your authority and increase your visibility. Explore our core focus areas below.</p>
             </div>
-            <div class="service-card-grid">
-                <a href="#" class="service-card" style="background-image: url(https://images.unsplash.com/photo-1554224155-8d044b4a2592?q=80&w=2070)">
-                    <div class="card-content">
-                        <h3>Technical SEO</h3>
-                        <div class="arrow-circle"><i class="ph-bold ph-arrow-right"></i></div>
+
+            <!-- Tab Navigation -->
+            <div class="tabs-nav">
+                <button class="tab-link active" data-tab="technical">Technical SEO</button>
+                <button class="tab-link" data-tab="content">Content Strategy</button>
+                <button class="tab-link" data-tab="linking">Link Building</button>
+                <button class="tab-link" data-tab="local">Local SEO</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tabs-content">
+                <div id="technical" class="tab-pane active">
+                    <div class="tab-pane-content">
+                        <h3>Flawless Technical Foundation</h3>
+                        <p>We perform deep-dive audits to resolve crawl errors, optimize site speed, implement structured data, and ensure your website’s architecture is perfectly primed for search engine crawlers. A healthy site is the first step to ranking.</p>
                     </div>
-                </a>
-                <a href="#" class="service-card" style="background-image: url(https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974)">
-                    <div class="card-content">
-                        <h3>Content & Keyword Strategy</h3>
-                        <div class="arrow-circle"><i class="ph-bold ph-arrow-right"></i></div>
+                    <img src="https://images.unsplash.com/photo-1554224155-8d044b4a2592?q=80&w=2070" alt="Technical SEO illustration">
+                </div>
+                <div id="content" class="tab-pane">
+                    <div class="tab-pane-content">
+                        <h3>Content That Captivates & Converts</h3>
+                        <p>Our team develops a data-driven content strategy that targets high-intent keywords. We create valuable, engaging articles, guides, and landing pages that not only attract your target audience but also establish your brand as an industry authority.</p>
                     </div>
-                </a>
-                <a href="#" class="service-card" style="background-image: url(https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070)">
-                    <div class="card-content">
-                        <h3>High-Quality Link Building</h3>
-                        <div class="arrow-circle"><i class="ph-bold ph-arrow-right"></i></div>
+                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974" alt="Content Strategy illustration">
+                </div>
+                <div id="linking" class="tab-pane">
+                    <div class="tab-pane-content">
+                        <h3>Building Authority, One Link at a Time</h3>
+                        <p>We secure high-quality, relevant backlinks from authoritative websites. Our ethical outreach and content promotion strategies build your site's credibility and domain authority, sending powerful ranking signals to Google.</p>
                     </div>
-                </a>
-                <a href="#" class="service-card" style="background-image: url(https://images.unsplash.com/photo-1600195077909-46e573870d99?q=80&w=1974)">
-                    <div class="card-content">
-                        <h3>Local SEO</h3>
-                        <div class="arrow-circle"><i class="ph-bold ph-arrow-right"></i></div>
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070" alt="Link Building illustration">
+                </div>
+                <div id="local" class="tab-pane">
+                    <div class="tab-pane-content">
+                        <h3>Connect with Your Local Community</h3>
+                        <p>We optimize your Google Business Profile, build local citations, and manage online reviews to ensure your business appears in the "local pack" for relevant searches, driving foot traffic and local customers to your door.</p>
                     </div>
-                </a>
+                    <img src="https://images.unsplash.com/photo-1600195077909-46e573870d99?q=80&w=1974" alt="Local SEO illustration">
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="faq-section">
+    <!-- ====================================================== -->
+    <!-- ==     4. FAQ SECTION (SEO QUESTIONS)               == -->
+    <!-- ====================================================== -->
+      <section class="faq-section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Frequently Asked Questions</h2>
@@ -140,6 +170,9 @@
         </div>
     </section>
     
+    <!-- ====================================================== -->
+    <!-- ==     5. CONTACT SECTION (CONSISTENT)              == -->
+    <!-- ====================================================== -->
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="fade-in">
@@ -165,12 +198,18 @@
     </section>
 </main>
 
+<!-- ====================================================== -->
+<!-- ==     6. STANDARDIZED FOOTER                       == -->
+<!-- ====================================================== -->
 <footer class="main-footer">
     <div class="container">
         <p>&copy; 2025 Stellar Digital. All Rights Reserved. | Crewe, United Kingdom</p>
     </div>
 </footer>
 
+<!-- ====================================================== -->
+<!-- ==     7. CORRECTED SCRIPT LINKS                    == -->
+<!-- ====================================================== -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="../script.js"></script>
 <script src="service-script.js"></script>
