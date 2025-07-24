@@ -704,7 +704,21 @@ body {
     .contact-form button {
         grid-column: span 1 !important;
     }
-.nav-links {
+}
+/* Style for the mobile navigation toggle */
+.mobile-nav-toggle {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: var(--text-color);
+    z-index: 1001; /* Make sure it's on top */
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .nav-links {
         /* ... existing styles ... */
         /* Add new styles for mobile menu appearance */
         position: fixed;
@@ -728,13 +742,5 @@ body {
         display: block; /* Show the button on mobile */
     }
 }
-/* Style for the mobile navigation toggle */
-.mobile-nav-toggle {
-    display: none; /* Hidden by default */
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 2rem;
-    color: var(--text-color);
-    z-index: 1001; /* Make sure it's on top */
-}
+
+
