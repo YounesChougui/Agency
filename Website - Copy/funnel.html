@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Ad Account Audit</title>
+  <style>
+    /* Mobile-first reset & base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { width: 100%; height: 100%; font-family: Arial, sans-serif; color: #333; }
+    button { font-size: 16px; padding: 14px; border: none; border-radius: 6px; background: #007bff; color: #fff; width: 100%; margin: 8px 0; }
+    section { display: none; width: 100%; height: 100vh; position: absolute; top: 0; left: 0; padding: 24px; background: #f9f9f9; }
+    section.active { display: block; }
+    .center { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; }
+    .video-bg, .video-client { width: 100%; height: auto; max-height: 60vh; border-radius: 12px; margin-bottom: 16px; }
+    .choice-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
+    input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; }
+    form { width: 100%; max-width: 400px; }
+    ol { text-align: left; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <!-- Slide 1 -->
+  <section id="slide1" class="active">
+    <div class="center">
+      <video class="video-bg" autoplay muted loop playsinline src="agent_welcome.mp4"></video>
+      <h1>Hi there! Glad you made it.</h1>
+      <button id="btn1">Let's Start</button>
+    </div>
+  </section>
+
+  <!-- Slide 2 -->
+  <section id="slide2">
+    <div class="center">
+      <h1>What&rsquo;s your biggest advertising challenge right now?</h1>
+      <div class="choice-group">
+        <button data-choice="waste">Wasting Ad Spend Without Sales</button>
+        <button data-choice="cpl">Cost-Per-Lead is Too High</button>
+        <button data-choice="consistent">Struggling to Generate Consistent Sales</button>
+        <button data-choice="scaling">Difficulty Scaling Store Sales</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 3 -->
+  <section id="slide3">
+    <div class="center">
+      <video class="video-bg" autoplay muted loop playsinline src="dashboard_demo.mp4"></video>
+      <h1 id="slide3-msg"></h1>
+      <button id="slide3-btn"></button>
+    </div>
+  </section>
+
+  <!-- Slide 4 -->
+  <section id="slide4">
+    <div class="center">
+      <video class="video-client" autoplay muted loop playsinline src="client_testimonial.mp4"></video>
+      <h2>John P., E‑commerce Owner</h2>
+      <p>“Their audit found £5k in wasted spend in the first week.”</p>
+      <button id="btn4">Wow, tell me more!</button>
+    </div>
+  </section>
+
+  <!-- Slide 5 -->
+  <section id="slide5">
+    <div class="center">
+      <video class="video-bg" autoplay muted loop playsinline src="agent_confident.mp4"></video>
+      <h1>I will personally conduct a free, no-obligation audit of your ad account to show you exactly where the opportunities are.</h1>
+      <button id="btn5">Claim My Free Audit</button>
+    </div>
+  </section>
+
+  <!-- Slide 6 -->
+  <section id="slide6">
+    <div class="center">
+      <h1>Claim Your Free Ad Account Audit</h1>
+      <form id="audit-form">
+        <input type="text" name="name" placeholder="e.g. Jane Doe" required />
+        <input type="email" name="email" placeholder="e.g. jane@example.com" required />
+        <input type="tel" name="phone" placeholder="e.g. +44 7123 456 789" required />
+        <select name="platform" required>
+          <option value="">Select Advertising Platform</option>
+          <option>Google</option>
+          <option>Meta</option>
+          <option>LinkedIn</option>
+          <option>Microsoft</option>
+          <option>Other</option>
+        </select>
+        <select name="spend" required>
+          <option value="">Select Monthly Ad Spend</option>
+          <option>< £5k</option>
+          <option>£5k–£15k</option>
+          <option>£15k–£50k</option>
+          <option>> £50k</option>
+        </select>
+        <button type="submit">Get My Audit</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Slide 7 -->
+  <section id="slide7">
+    <div class="center">
+      <img src="agent_logo.png" alt="Agency Logo" style="max-width:150px; margin-bottom:16px;" />
+      <h1>Thank you! Your audit request is submitted.</h1>
+      <ol>
+        <li>Check your email for a confirmation.</li>
+        <li>We will review your request and reach out within 1 business day.</li>
+        <li>We’ll schedule a call to walk you through the audit findings.</li>
+      </ol>
+    </div>
+  </section>
+
+  <script>
+    // Simple slide navigation & branching logic
+    const slides = [...document.querySelectorAll('section')];
+    let current = 0;
+    const nextSlide = () => {
+      slides[current].classList.remove('active');
+      current = Math.min(current + 1, slides.length - 1);
+      slides[current].classList.add('active');
+    };
+
+    // Slide 1 -> 2
+    document.getElementById('btn1').addEventListener('click', nextSlide);
+
+    // Slide 2: capture choice, prep Slide 3, then next
+    document.querySelectorAll('#slide2 button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const choice = btn.dataset.choice;
+        const msg = document.getElementById('slide3-msg');
+        const cta = document.getElementById('slide3-btn');
+        switch(choice) {
+          case 'waste':
+            msg.textContent = 'I see that all the time. We help you fix that by…';
+            cta.textContent = '…pinpointing every wasted penny.';
+            break;
+          case 'cpl':
+            msg.textContent = 'High CPL kills ROI. We solve that by…';
+            cta.textContent = '…optimising bids for max efficiency.';
+            break;
+          case 'consistent':
+            msg.textContent = 'Consistency is key. We deliver it by…';
+            cta.textContent = '…building repeatable ad funnels.';
+            break;
+          case 'scaling':
+            msg.textContent = 'Scaling is tough. We make it simple by…';
+            cta.textContent = '…unlocking new audience segments.';
+            break;
+        }
+        nextSlide();
+      });
+    });
+
+    // Continue linear flow
+    document.getElementById('slide3-btn').addEventListener('click', nextSlide);
+    document.getElementById('btn4').addEventListener('click', nextSlide);
+    document.getElementById('btn5').addEventListener('click', nextSlide);
+
+    // Form submit -> thank you
+    document.getElementById('audit-form').addEventListener('submit', e => {
+      e.preventDefault();
+      // here you’d hook into your CRM or API
+      nextSlide();
+    });
+  </script>
+</body>
+</html>
