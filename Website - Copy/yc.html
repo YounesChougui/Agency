@@ -238,7 +238,7 @@
             </div>
         </section>
         
-        <!-- Featured Work Slider -->
+       <!-- Featured Work Slider -->
         <section id="featured-work" class="py-20 md:py-28 fade-in-section">
             <div class="container mx-auto px-6">
                 <h2 class="section-title">Featured Work</h2>
@@ -246,50 +246,59 @@
                     <div class="slider-wrapper">
                         <div class="slider">
                             <div class="slide p-4">
-                                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/uploaded:UK Fuel.png-b1dbc37b-013a-4137-ba4b-2b9ea2898fdb" alt="Google Ads UK Fuel" class="w-full">
-                                    <div class="p-4 bg-slate-50">
-                                        <h3 class="font-bold text-slate-800">Google Ads: UK Fuel Cards</h3>
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden p-6">
+                                    <h3 class="font-bold text-slate-800 text-center mb-4">Salesforce: Total Wins by Month</h3>
+                                    <div class="relative h-96 w-full">
+                                        <canvas id="salesforceWinsChart"></canvas>
                                     </div>
                                 </div>
                             </div>
                             <div class="slide p-4">
-                                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/uploaded:Ireland Fuel.png-95d2bce4-55a3-479e-9fc8-5c52b7db8538" alt="Google Ads Ireland Fuel" class="w-full">
-                                    <div class="p-4 bg-slate-50">
-                                        <h3 class="font-bold text-slate-800">Google Ads: Ireland Fuel Cards</h3>
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden p-6">
+                                    <h3 class="font-bold text-slate-800 text-center mb-4">Salesforce: Leads & MQL %</h3>
+                                    <div class="relative h-96 w-full">
+                                        <canvas id="salesforceMQLChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide p-4">
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden p-6">
+                                    <h3 class="font-bold text-slate-800 text-center mb-4">Meta Ads: UK Campaign</h3>
+                                     <div class="relative h-96 w-full">
+                                        <canvas id="metaAdsChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide p-4">
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden p-6">
+                                    <h3 class="font-bold text-slate-800 text-center mb-4">Google Ads: UK Fuel Cards</h3>
+                                    <div class="grid grid-cols-2 gap-4 mt-6 h-full items-center">
+                                        <div class="kpi-card"><p class="kpi-label">Clicks</p><p class="kpi-value">82.6K</p></div>
+                                        <div class="kpi-card"><p class="kpi-label">Conversions</p><p class="kpi-value">14.1K</p></div>
+                                        <div class="kpi-card"><p class="kpi-label">Cost / Conv.</p><p class="kpi-value">£41.20</p></div>
+                                        <div class="kpi-card"><p class="kpi-label">Cost</p><p class="kpi-value">£582K</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide p-4">
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden p-6">
+                                    <h3 class="font-bold text-slate-800 text-center mb-4">Google Ads: Ireland Fuel Cards</h3>
+                                    <div class="grid grid-cols-2 gap-4 mt-6 h-full items-center">
+                                        <div class="kpi-card"><p class="kpi-label">Clicks</p><p class="kpi-value">40.1K</p></div>
+                                        <div class="kpi-card"><p class="kpi-label">Conversions</p><p class="kpi-value">2.18K</p></div>
+                                        <div class="kpi-card"><p class="kpi-label">Cost / Conv.</p><p class="kpi-value">€45.37</p></div>
+                                        <div class="kpi-card"><p class="kpi-label">Cost</p><p class="kpi-value">€99.1K</p></div>
                                     </div>
                                 </div>
                             </div>
                              <div class="slide p-4">
-                                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/uploaded:Belgium Fuel.png-5df013e0-a686-4c1a-b2d2-b97e88f319e7" alt="Google Ads Belgium Fuel" class="w-full">
-                                    <div class="p-4 bg-slate-50">
-                                        <h3 class="font-bold text-slate-800">Google Ads: Belgium Fuel Cards</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slide p-4">
-                                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/uploaded:Meta Ads UK.png-bb8177ed-0a2c-4aa8-a5a2-1d1c3b703b58" alt="Meta Ads UK" class="w-full">
-                                    <div class="p-4 bg-slate-50">
-                                        <h3 class="font-bold text-slate-800">Meta Ads: UK Campaign</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slide p-4">
-                                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/uploaded:Total Wins aLL.png-90a3e3bf-f4cf-423b-90df-bf6f118be3e1" alt="Salesforce Total Wins" class="w-full">
-                                    <div class="p-4 bg-slate-50">
-                                        <h3 class="font-bold text-slate-800">Salesforce: Total Wins by Month</h3>
-                                    </div>
-                                </div>
-                            </div>
-                             <div class="slide p-4">
-                                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/uploaded:Screenshot 2025-07-25 121354.png-4e046df5-0f20-45c4-8447-ca29e10bc335" alt="Salesforce Leads and MQL" class="w-full">
-                                    <div class="p-4 bg-slate-50">
-                                        <h3 class="font-bold text-slate-800">Salesforce: Leads & MQL %</h3>
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden p-6">
+                                    <h3 class="font-bold text-slate-800 text-center mb-4">Google Ads: Belgium Fuel Cards</h3>
+                                    <div class="grid grid-cols-2 gap-4 mt-6 h-full items-center">
+                                        <div class="kpi-card"><p class="kpi-label">Clicks</p><p class="kpi-value">156K</p></div>
+                                        <div class="kpi-card"><p class="kpi-label">Conversions</p><p class="kpi-value">20.4K</p></div>
+                                        <div class="kpi-card"><p class="kpi-label">Cost / Conv.</p><p class="kpi-value">€26.38</p></div>
+                                        <div class="kpi-card"><p class="kpi-label">Cost</p><p class="kpi-value">€538K</p></div>
                                     </div>
                                 </div>
                             </div>
@@ -300,6 +309,7 @@
                 </div>
             </div>
         </section>
+
 
         <!-- 3. Featured Case Studies -->
         <section id="casestudies" class="py-20 md:py-28 bg-slate-50 fade-in-section">
@@ -558,7 +568,77 @@
                     }
                 }
             };
+                 // Featured Work: Salesforce Wins Chart
+            function initSalesforceWinsChart() {
+                const ctx = document.getElementById('salesforceWinsChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Oct 24', 'Nov 24', 'Dec 24', 'Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25', 'Jul 25'],
+                        datasets: [{
+                            label: 'Converted Leads Won',
+                            data: [2, 9, 5, 5, 2, 2, 2, 3, 11, 11],
+                            backgroundColor: 'rgba(14, 165, 233, 0.6)',
+                            borderColor: 'rgba(14, 165, 233, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: chartOptions
+                });
+            }
             
+            // Featured Work: Salesforce MQL Chart
+            function initSalesforceMQLChart() {
+                const ctx = document.getElementById('salesforceMQLChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Oct 24', 'Nov 24', 'Dec 24', 'Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25', 'Jul 25'],
+                        datasets: [{
+                            label: 'Leads',
+                            data: [30, 30, 42, 53, 76, 88, 123, 81, 90, 80],
+                            backgroundColor: 'rgba(14, 165, 233, 0.6)',
+                            yAxisID: 'y',
+                        }, {
+                            type: 'line',
+                            label: 'MQL %',
+                            data: [83.3, 90, 81, 62.3, 36.8, 60.2, 64.2, 65.4, 70, 80],
+                            borderColor: 'rgba(100, 116, 139, 1)',
+                            tension: 0.3,
+                            yAxisID: 'y1',
+                        }]
+                    },
+                    options: {
+                        ...chartOptions,
+                        scales: {
+                            y: { ...chartOptions.scales.y, position: 'left', title: { display: true, text: 'Lead Count', color: '#475569' } },
+                            y1: { type: 'linear', display: true, position: 'right', title: { display: true, text: 'MQL %', color: '#475569' }, grid: { drawOnChartArea: false }, ticks: { callback: value => value + '%', color: '#475569' } }
+                        }
+                    }
+                });
+            }
+            
+            // Featured Work: Meta Ads Chart
+            function initMetaAdsChart() {
+                const ctx = document.getElementById('metaAdsChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Amount Spent (£)', 'Conversions', 'Cost per Conversion (£)'],
+                        datasets: [{
+                            label: 'Meta Ads Performance',
+                            data: [145000, 6190, 23.35],
+                            backgroundColor: [
+                                'rgba(14, 165, 233, 0.6)',
+                                'rgba(56, 189, 248, 0.6)',
+                                'rgba(125, 211, 252, 0.6)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: { ...chartOptions, scales: { ...chartOptions.scales, y: { ...chartOptions.scales.y, type: 'logarithmic' } } }
+                });
+            }
             // Case Study 1: CPL Chart
             function initCplChart() {
                 const ctx = document.getElementById('cplChart').getContext('2d');
