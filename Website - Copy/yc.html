@@ -1090,6 +1090,64 @@
                 });
             });
         });
+                // --- JavaScript for Count-Up Animation on Scroll ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const achievementsSection = document.querySelector('#achievements');
+            const stats = document.querySelectorAll('.stat-number');
+            let hasAnimated = false; // Flag to ensure animation runs only once
+
+            // --- The main animation function (UPDATED) ---
+            const animateStat = (element) => {
+                const target = +element.dataset.target;
+                const type = element.dataset.type; // Get the stat type (currency/percentage)
+                const duration = 2000; // Animation duration in milliseconds
+                const frameDuration = 1000 / 60; // 60 frames per second
+                const totalFrames = Math.round(duration / frameDuration);
+                let frame = 0;
+                
+                const counter = setInterval(() => {
+                    frame++;
+                    const progress = frame / totalFrames;
+
+                    // Use the data-type to format the output correctly
+                    if (type === 'currency') {
+                        const currentCount = (target * progress).toFixed(1);
+                        element.innerText = '£' + currentCount + 'M';
+                    } else { // Assumes 'percentage'
+                        const currentCount = Math.round(target * progress);
+                        element.innerText = currentCount + '%';
+                    }
+
+                    if (frame === totalFrames) {
+                        clearInterval(counter);
+                        // Ensure final number is exact and correctly formatted
+                        if (type === 'currency') {
+                            element.innerText = '£' + target.toLocaleString('en-GB', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + 'M';
+                        } else {
+                            element.innerText = target + '%';
+                        }
+                    }
+                }, frameDuration);
+            };
+
+            // --- Intersection Observer to trigger animation on scroll ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // Check if the section is in view and hasn't been animated yet
+                    if (entry.isIntersecting && !hasAnimated) {
+                        hasAnimated = true; // Set flag to true
+                        stats.forEach(stat => {
+                            animateStat(stat);
+                        });
+                        observer.disconnect(); // Optional: stop observing after animation
+                    }
+                });
+            }, {
+                threshold: 0.4 // Trigger when 40% of the section is visible
+            });
+
+            observer.observe(achievementsSection);
+        });
     </script>
 
 </body>
