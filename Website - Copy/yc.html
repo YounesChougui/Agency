@@ -207,8 +207,12 @@
                             <p><strong>Result:</strong> Significantly optimized CPL and CVR. Collaboration with sales ensured inbound leads were sales-ready, demonstrating clear impact on full-funnel performance.</p>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                            <canvas id="cplChart"></canvas>
-                            <canvas id="funnelChart"></canvas>
+                            <div class="relative h-80 w-full">
+                                <canvas id="cplChart"></canvas>
+                            </div>
+                            <div class="relative h-80 w-full">
+                                <canvas id="funnelChart"></canvas>
+                            </div>
                         </div>
                     </article>
 
@@ -221,8 +225,12 @@
                             <p><strong>Result:</strong> Achieved a 30% increase in lead generation, a 5% improvement in conversion rates, and a 30% boost in overall website traffic.</p>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                             <canvas id="trafficChart"></canvas>
-                             <canvas id="channelMixChart"></canvas>
+                            <div class="relative h-80 w-full">
+                                <canvas id="trafficChart"></canvas>
+                            </div>
+                            <div class="relative h-80 w-full">
+                                <canvas id="channelMixChart"></canvas>
+                            </div>
                         </div>
                     </article>
 
@@ -234,11 +242,13 @@
                             <p class="mb-4"><strong>Action:</strong> Designed a ground-up social media strategy with daily content, strategic scheduling, and targeted ad campaigns. Focused on active community engagement.</p>
                             <p><strong>Result:</strong> In 6 months, boosted visibility by 25%, follower growth by 35%, and engagement by 40%. Ads saw an 18% CTR improvement and a 12% CPC reduction.</p>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 items-center">
-                            <canvas id="growthChart"></canvas>
-                            <div class="bg-white p-4 rounded-lg border border-slate-200 h-full">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 items-stretch">
+                            <div class="relative h-80 w-full">
+                                <canvas id="growthChart"></canvas>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 flex flex-col justify-center">
                                 <h4 class="font-bold text-center mb-3 text-slate-700">Ad Metric Improvements</h4>
-                                <table class="w-full text-sm text-left h-full">
+                                <table class="w-full text-sm text-left">
                                     <thead class="text-xs text-slate-500 uppercase bg-slate-50">
                                         <tr><th class="p-2">Metric</th><th class="p-2">Before</th><th class="p-2">After</th><th class="p-2 text-green-600">Improvement</th></tr>
                                     </thead>
@@ -398,7 +408,7 @@
             // --- Chart.js Initializations ---
             const chartOptions = {
                 responsive: true,
-                maintainAspectRatio: true,
+                maintainAspectRatio: false, // Set to false to allow custom height via wrapper
                 plugins: {
                     legend: {
                         labels: {
@@ -508,7 +518,7 @@
                             borderWidth: 2
                         }]
                     },
-                    options: { responsive: true, maintainAspectRatio: true, plugins: { ...chartOptions.plugins, title: { display: true, text: 'Marketing Channel Mix', color: '#1e293b', font: {size: 16} } } }
+                    options: { ...chartOptions, plugins: { ...chartOptions.plugins, title: { display: true, text: 'Marketing Channel Mix', color: '#1e293b', font: {size: 16} } } }
                 });
             }
 
