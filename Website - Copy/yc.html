@@ -93,6 +93,49 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Slider Styles */
+        .slider-container {
+            position: relative;
+        }
+        .slider-wrapper {
+            overflow: hidden;
+            width: 100%;
+        }
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid #e2e8f0;
+            border-radius: 9999px;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #334155;
+            transition: all 0.2s ease;
+        }
+        .slider-button:hover {
+            background-color: #0ea5e9;
+            color: white;
+        }
+        .slider-button.prev {
+            left: -1.5rem;
+        }
+        .slider-button.next {
+            right: -1.5rem;
+        }
     </style>
 </head>
 <body class="text-slate-600">
@@ -104,6 +147,7 @@
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#achievements" class="text-slate-600 hover:text-sky-500 transition-colors">Achievements</a>
                 <a href="#track-record" class="text-slate-600 hover:text-sky-500 transition-colors">Track Record</a>
+                <a href="#featured-work" class="text-slate-600 hover:text-sky-500 transition-colors">Featured Work</a>
                 <a href="#casestudies" class="text-slate-600 hover:text-sky-500 transition-colors">Case Studies</a>
                 <a href="#skills" class="text-slate-600 hover:text-sky-500 transition-colors">Skills</a>
                 <a href="#about" class="text-slate-600 hover:text-sky-500 transition-colors">About</a>
@@ -119,6 +163,7 @@
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
             <a href="#achievements" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100">Achievements</a>
             <a href="#track-record" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100">Track Record</a>
+            <a href="#featured-work" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100">Featured Work</a>
             <a href="#casestudies" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100">Case Studies</a>
             <a href="#skills" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100">Skills</a>
             <a href="#about" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100">About</a>
@@ -192,9 +237,72 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Featured Work Slider -->
+        <section id="featured-work" class="py-20 md:py-28 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Featured Work</h2>
+                <div class="max-w-5xl mx-auto slider-container">
+                    <div class="slider-wrapper">
+                        <div class="slider">
+                            <div class="slide p-4">
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/uploaded:UK Fuel.png-b1dbc37b-013a-4137-ba4b-2b9ea2898fdb" alt="Google Ads UK Fuel" class="w-full">
+                                    <div class="p-4 bg-slate-50">
+                                        <h3 class="font-bold text-slate-800">Google Ads: UK Fuel Cards</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide p-4">
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/uploaded:Ireland Fuel.png-95d2bce4-55a3-479e-9fc8-5c52b7db8538" alt="Google Ads Ireland Fuel" class="w-full">
+                                    <div class="p-4 bg-slate-50">
+                                        <h3 class="font-bold text-slate-800">Google Ads: Ireland Fuel Cards</h3>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="slide p-4">
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/uploaded:Belgium Fuel.png-5df013e0-a686-4c1a-b2d2-b97e88f319e7" alt="Google Ads Belgium Fuel" class="w-full">
+                                    <div class="p-4 bg-slate-50">
+                                        <h3 class="font-bold text-slate-800">Google Ads: Belgium Fuel Cards</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide p-4">
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/uploaded:Meta Ads UK.png-bb8177ed-0a2c-4aa8-a5a2-1d1c3b703b58" alt="Meta Ads UK" class="w-full">
+                                    <div class="p-4 bg-slate-50">
+                                        <h3 class="font-bold text-slate-800">Meta Ads: UK Campaign</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide p-4">
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/uploaded:Total Wins aLL.png-90a3e3bf-f4cf-423b-90df-bf6f118be3e1" alt="Salesforce Total Wins" class="w-full">
+                                    <div class="p-4 bg-slate-50">
+                                        <h3 class="font-bold text-slate-800">Salesforce: Total Wins by Month</h3>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="slide p-4">
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                                    <img src="https://storage.googleapis.com/gemini-generative-ai-dev/uploaded:Screenshot 2025-07-25 121354.png-4e046df5-0f20-45c4-8447-ca29e10bc335" alt="Salesforce Leads and MQL" class="w-full">
+                                    <div class="p-4 bg-slate-50">
+                                        <h3 class="font-bold text-slate-800">Salesforce: Leads & MQL %</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slider-button prev" id="prev-slide"><i data-lucide="arrow-left"></i></button>
+                    <button class="slider-button next" id="next-slide"><i data-lucide="arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
 
         <!-- 3. Featured Case Studies -->
-        <section id="casestudies" class="py-20 md:py-28 fade-in-section">
+        <section id="casestudies" class="py-20 md:py-28 bg-slate-50 fade-in-section">
             <div class="container mx-auto px-6">
                 <h2 class="section-title">Featured Case Studies</h2>
                 <div class="space-y-16">
@@ -265,7 +373,7 @@
         </section>
 
         <!-- 4. Skills & Platform Expertise -->
-        <section id="skills" class="py-20 md:py-28 bg-slate-50 fade-in-section">
+        <section id="skills" class="py-20 md:py-28 fade-in-section">
             <div class="container mx-auto px-6">
                 <h2 class="section-title">Skills & Platform Expertise</h2>
                 <div class="max-w-4xl mx-auto space-y-8">
@@ -298,7 +406,7 @@
         </section>
 
         <!-- 5. About Me Section -->
-        <section id="about" class="py-20 md:py-28 fade-in-section">
+        <section id="about" class="py-20 md:py-28 bg-slate-50 fade-in-section">
             <div class="container mx-auto px-6">
                 <div class="max-w-4xl mx-auto text-center">
                     <h2 class="section-title">About Me</h2>
@@ -318,7 +426,7 @@
         </section>
 
         <!-- 6. Beyond the Data -->
-        <section id="personal" class="py-20 md:py-28 bg-slate-50 fade-in-section">
+        <section id="personal" class="py-20 md:py-28 fade-in-section">
             <div class="container mx-auto px-6">
                 <h2 class="section-title">Beyond the Data: A Glimpse Into My Life</h2>
                 <p class="text-center max-w-2xl mx-auto mb-12">When I'm not optimizing campaigns...</p>
@@ -374,6 +482,28 @@
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
+            
+            // Featured Work Slider
+            const slider = document.querySelector('.slider');
+            const prevButton = document.getElementById('prev-slide');
+            const nextButton = document.getElementById('next-slide');
+            const slides = document.querySelectorAll('.slide');
+            let currentIndex = 0;
+
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlider();
+            });
+
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateSlider();
+            });
+
 
             // --- Scroll-triggered Animations ---
             const sections = document.querySelectorAll('.fade-in-section');
