@@ -210,6 +210,33 @@
             transform: scale(1.1);
         }
 
+        .hero-section {
+            background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.1), transparent 40%);
+            animation: pulse 10s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(0.9); opacity: 0.5; }
+        }
+
+        .profile-picture-container {
+            background: linear-gradient(135deg, #374151, #1f2937);
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.2);
+        }
     </style>
 </head>
 <body class="text-slate-600">
@@ -247,14 +274,35 @@
 
     <main>
         <!-- 1. Hero Section -->
-        <section id="hero" class="bg-sky-50 py-20 md:py-40">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-slate-900">Strategic Paid Media Executive Driving Global B2B/B2C Growth</h1>
-                <p class="text-lg md:text-xl max-w-4xl mx-auto text-slate-600">
-                    A results-driven Paid Media Executive with a proven track record of managing multi-million-pound (£4.5M) advertising budgets across competitive international markets. I specialize in architecting and executing sophisticated, data-driven PPC strategies that directly fuel pipeline growth and enhance lead quality. My expertise lies in translating complex data from platforms like Google Ads, Meta, and LinkedIn into actionable insights that drive measurable business outcomes.
-                </p>
+    <Section class="hero-section">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+                <!-- Left Column: Introduction -->
+                <div class="text-center md:text-left">
+                    <span class="text-sky-400 font-semibold uppercase tracking-wider">Younes Chougui</span>
+                    <h1 class="text-4xl lg:text-5xl font-extrabold text-white mt-2 mb-4 leading-tight">Digital Marketing & Paid Media Specialist</h1>
+                    <p class="text-lg text-gray-300 mb-8">
+                        Proficient in managing high-performance digital campaigns across Google Ads, Meta, and Linkedin. I specialize in international PPC strategy, campaign optimization, and data-driven marketing to boost lead quality and maximize ROI.
+                    </p>
+                    <a href="mailto:Youneschougui@icloud.com" class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+                        Get In Touch
+                    </a>
+                </div>
+                <!-- Right Column: Picture -->
+                <div class="flex justify-center md:justify-end">
+                    <div class="profile-picture-container w-64 h-64 sm:w-80 sm:h-80 rounded-full flex items-center justify-center p-2">
+                        <!-- Instructions: Replace the 'src' with your image URL -->
+                        <img 
+                            src="https://placehold.co/400x400/1f2937/ffffff?text=YC" 
+                            alt="Younes Chougui Profile Picture" 
+                            class="w-full h-full rounded-full object-cover"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/ffffff?text=YC';"
+                        >
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </Section>
     <section class="white-bg py-16 sm:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
