@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Paid Media Executive | Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+
+    <style>
+        /* Custom styles for light theme and animations */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff; /* White background */
+            color: #334155; /* Slate 700 text */
+        }
+
+        .section-title {
+            @apply text-3xl md:text-4xl font-bold text-slate-800 mb-12 text-center;
+        }
+
+        .card {
+            @apply bg-white border border-slate-200 rounded-2xl shadow-lg transition-all duration-300;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.1); /* Sky 500 shadow */
+        }
+        
+        .case-study-card {
+             @apply bg-slate-50/50 border border-slate-200 rounded-2xl shadow-sm transition-all duration-300 p-8 md:p-12;
+        }
+        .case-study-card:hover {
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.08);
+        }
+
+
+        .skill-badge {
+            @apply bg-sky-100 text-sky-800 text-sm font-medium px-4 py-2 rounded-full transition-colors hover:bg-sky-500 hover:text-white;
+        }
+
+        .contact-btn {
+             background-color: #0ea5e9; /* sky-500 */
+             color: #FFFFFF;
+             transition: all 0.3s ease;
+             position: relative;
+             overflow: hidden;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .contact-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Scroll-triggered Animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="text-slate-600">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-sm sticky top-0 z-50 border-b border-slate-200">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-slate-900">YS.</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#achievements" class="text-slate-600 hover:text-sky-500 transition-colors">Achievements</a>
+                <a href="#track-record" class="text-slate-600 hover:text-sky-500 transition-colors">Track Record</a>
+                <a href="#casestudies" class="text-slate-600 hover:text-sky-500 transition-colors">Case Studies</a>
+                <a href="#skills" class="text-slate-600 hover:text-sky-500 transition-colors">Skills</a>
+                <a href="#about" class="text-slate-600 hover:text-sky-500 transition-colors">About</a>
+                <a href="#contact" class="contact-btn font-bold py-2 px-4 rounded-lg">Contact</a>
+            </div>
+            <div class="md:hidden">
+                 <button id="mobile-menu-button" class="text-slate-800 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                 </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
+            <a href="#achievements" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100">Achievements</a>
+            <a href="#track-record" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100">Track Record</a>
+            <a href="#casestudies" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100">Case Studies</a>
+            <a href="#skills" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100">Skills</a>
+            <a href="#about" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100">About</a>
+            <a href="#contact" class="block py-2 px-4 text-sm text-slate-600 hover:bg-slate-100">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section id="hero" class="bg-sky-50 py-20 md:py-40">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-slate-900">Strategic Paid Media Executive Driving Global B2B/B2C Growth</h1>
+                <p class="text-lg md:text-xl max-w-4xl mx-auto text-slate-600">
+                    A results-driven Paid Media Executive with a proven track record of managing multi-million-pound (£4.5M) advertising budgets across competitive international markets. I specialize in architecting and executing sophisticated, data-driven PPC strategies that directly fuel pipeline growth and enhance lead quality. My expertise lies in translating complex data from platforms like Google Ads, Meta, and LinkedIn into actionable insights that drive measurable business outcomes.
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. Key Achievements Snapshot -->
+        <section id="achievements" class="py-20 md:py-28 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Key Achievements Snapshot</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="card p-8">
+                        <h3 class="text-5xl font-extrabold text-sky-500 mb-3">£4.5M</h3>
+                        <p>Managed and optimized a £4.5M annual paid media budget across Google, Meta, LinkedIn, and Microsoft Ads.</p>
+                    </div>
+                    <div class="card p-8">
+                        <h3 class="text-5xl font-extrabold text-sky-500 mb-3">30%</h3>
+                        <p>Achieved a 30% increase in lead generation by developing and executing comprehensive multi-channel marketing strategies.</p>
+                    </div>
+                    <div class="card p-8">
+                        <h3 class="text-5xl font-extrabold text-sky-500 mb-3">12%</h3>
+                        <p>Drove a 12% increase in lead conversion rates through targeted email marketing campaigns and nurturing sequences.</p>
+                    </div>
+                    <div class="card p-8">
+                        <h3 class="text-5xl font-extrabold text-sky-500 mb-3">30%</h3>
+                        <p>Increased organic website traffic by 30% by spearheading SEO initiatives and improving search rankings.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Track Record Section -->
+        <section id="track-record" class="py-20 md:py-28 bg-slate-50 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Proven Track Record</h2>
+                <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="border-b md:border-b-0 md:border-r border-slate-200 pb-8 md:pb-0 md:pr-8">
+                            <h4 class="font-bold text-lg text-slate-800 mb-2">Budget Management</h4>
+                            <p class="text-3xl font-bold text-sky-600">£4.5M Annually</p>
+                            <p class="text-sm text-slate-500">Across Google, Meta, LinkedIn</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-slate-800 mb-2">Lead Quality Improvement</h4>
+                            <p class="text-3xl font-bold text-sky-600">+22%</p>
+                            <p class="text-sm text-slate-500">Increase in MQL to SQL Conversion Rate</p>
+                        </div>
+                         <div class="border-b md:border-b-0 md:border-r border-slate-200 pb-8 md:pb-0 md:pr-8">
+                            <h4 class="font-bold text-lg text-slate-800 mb-2">Cost Efficiency</h4>
+                            <p class="text-3xl font-bold text-sky-600">-18%</p>
+                            <p class="text-sm text-slate-500">Reduction in Cost Per Lead (CPL)</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-slate-800 mb-2">E-commerce ROI</h4>
+                            <p class="text-3xl font-bold text-sky-600">4.2x ROAS</p>
+                            <p class="text-sm text-slate-500">Return on Ad Spend for B2C Campaigns</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Featured Case Studies -->
+        <section id="casestudies" class="py-20 md:py-28 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Featured Case Studies</h2>
+                <div class="space-y-16">
+                    <!-- Case Study 1 -->
+                    <article class="case-study-card">
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">B2B Lead Generation at Scale (Radius)</h3>
+                            <p class="mb-4"><strong>Problem:</strong> Needed to improve B2B lead quality from a £4.5M annual budget across diverse European markets, moving beyond simple volume metrics.</p>
+                            <p class="mb-4"><strong>Action:</strong> Implemented automated budget pacing, refined audience segmentation, localized landing pages, and integrated Google Analytics with Salesforce for end-to-end attribution.</p>
+                            <p><strong>Result:</strong> Significantly optimized CPL and CVR. Collaboration with sales ensured inbound leads were sales-ready, demonstrating clear impact on full-funnel performance.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                            <canvas id="cplChart"></canvas>
+                            <canvas id="funnelChart"></canvas>
+                        </div>
+                    </article>
+
+                    <!-- Case Study 2 -->
+                    <article class="case-study-card">
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">B2C E-commerce Growth (CSW)</h3>
+                            <p class="mb-4"><strong>Problem:</strong> Drive significant e-commerce growth for a gaming computer business on a limited £15k budget in a competitive market.</p>
+                            <p class="mb-4"><strong>Action:</strong> Executed a multi-channel strategy (Social, Email, SEO, PPC) based on competitor research. Created tailored content and optimized product descriptions.</p>
+                            <p><strong>Result:</strong> Achieved a 30% increase in lead generation, a 5% improvement in conversion rates, and a 30% boost in overall website traffic.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                             <canvas id="trafficChart"></canvas>
+                             <canvas id="channelMixChart"></canvas>
+                        </div>
+                    </article>
+
+                    <!-- Case Study 3 -->
+                    <article class="case-study-card">
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">SEO & Social Media Growth (Zuyu)</h3>
+                            <p class="mb-4"><strong>Problem:</strong> Elevate brand presence and drive meaningful engagement across Instagram, Facebook, and LinkedIn, moving beyond vanity metrics.</p>
+                            <p class="mb-4"><strong>Action:</strong> Designed a ground-up social media strategy with daily content, strategic scheduling, and targeted ad campaigns. Focused on active community engagement.</p>
+                            <p><strong>Result:</strong> In 6 months, boosted visibility by 25%, follower growth by 35%, and engagement by 40%. Ads saw an 18% CTR improvement and a 12% CPC reduction.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 items-center">
+                            <canvas id="growthChart"></canvas>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 h-full">
+                                <h4 class="font-bold text-center mb-3 text-slate-700">Ad Metric Improvements</h4>
+                                <table class="w-full text-sm text-left h-full">
+                                    <thead class="text-xs text-slate-500 uppercase bg-slate-50">
+                                        <tr><th class="p-2">Metric</th><th class="p-2">Before</th><th class="p-2">After</th><th class="p-2 text-green-600">Improvement</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b"><td class="p-2 font-medium">CTR</td><td class="p-2">1.50%</td><td class="p-2">1.77%</td><td class="p-2 font-medium text-green-600">+18%</td></tr>
+                                        <tr><td class="p-2 font-medium">CPC</td><td class="p-2">£1.25</td><td class="p-2">£1.10</td><td class="p-2 font-medium text-green-600">-12%</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Skills & Platform Expertise -->
+        <section id="skills" class="py-20 md:py-28 bg-slate-50 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Skills & Platform Expertise</h2>
+                <div class="max-w-4xl mx-auto space-y-8">
+                    <div class="card p-6">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">PPC Platforms</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-badge">Google Ads</span><span class="skill-badge">Meta Ads</span><span class="skill-badge">LinkedIn Ads</span><span class="skill-badge">Microsoft Ads</span>
+                        </div>
+                    </div>
+                    <div class="card p-6">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">Analytics & Data</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-badge">SQL</span><span class="skill-badge">Python</span><span class="skill-badge">Google Analytics (GA4)</span><span class="skill-badge">Excel</span><span class="skill-badge">Google Scripts</span><span class="skill-badge">Looker Studio</span><span class="skill-badge">Tableau</span>
+                        </div>
+                    </div>
+                    <div class="card p-6">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">SEO/SEM Tools</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-badge">SEMrush</span><span class="skill-badge">Moz</span><span class="skill-badge">Ahrefs</span>
+                        </div>
+                    </div>
+                    <div class="card p-6">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">CRM & Automation</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-badge">Salesforce</span><span class="skill-badge">HubSpot</span><span class="skill-badge">Mailchimp</span><span class="skill-badge">Klaviyo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. About Me Section -->
+        <section id="about" class="py-20 md:py-28 fade-in-section">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="text-2xl font-light italic text-sky-600 mb-8">"For me, paid media isn't just about clicks and impressions; it's about connecting data-driven strategy to tangible business growth."</p>
+                    <div class="text-left space-y-6 text-slate-700">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Core Philosophy</h3>
+                            <p>I thrive on the intersection of strategic thinking and hands-on technical execution. My approach combines a high-level view of multi-channel campaign architecture with the granular skills required to build advanced Google Ads scripts for automation and integrate CRM data to achieve full-funnel optimization. I believe the most effective strategies are born from a deep understanding of the data, from initial audience segmentation to final lead attribution.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Ambition</h3>
+                            <p>My career goal is to join a large, innovative company where I can apply my skills to solve complex, large-scale marketing challenges. I am eager to contribute to a team that is pushing the boundaries of what's possible in the digital advertising space and to drive significant, measurable business growth.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Beyond the Data -->
+        <section id="personal" class="py-20 md:py-28 bg-slate-50 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Beyond the Data: A Glimpse Into My Life</h2>
+                <p class="text-center max-w-2xl mx-auto mb-12">When I'm not optimizing campaigns...</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card p-6 text-center">
+                        <img src="https://placehold.co/600x600/e0f2fe/0ea5e9?text=Travel" alt="Travel photo" class="rounded-lg shadow-md mb-4 w-full aspect-square object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x600';">
+                        <p>"Exploring new cultures has taught me the importance of understanding different perspectives—a skill I use every day when analyzing international audiences."</p>
+                    </div>
+                    <div class="card p-6 text-center">
+                        <img src="https://placehold.co/600x600/e0f2fe/0ea5e9?text=Fitness" alt="Fitness photo" class="rounded-lg shadow-md mb-4 w-full aspect-square object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x600';">
+                        <p>"The discipline and focus required in fitness are the same principles I apply to managing complex campaigns and achieving long-term goals."</p>
+                    </div>
+                    <div class="card p-6 text-center">
+                        <img src="https://placehold.co/600x600/e0f2fe/0ea5e9?text=Hobby" alt="Hobby photo" class="rounded-lg shadow-md mb-4 w-full aspect-square object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x600';">
+                        <p>"My passion for photography has trained my eye for detail and composition, which helps me in creating compelling ad creatives and user experiences."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Contact Section -->
+        <footer id="contact" class="bg-slate-800 text-white py-20 md:py-28 fade-in-section">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-4">Let's Connect</h2>
+                <p class="max-w-2xl mx-auto mb-10 text-slate-300">I'm always open to discussing new opportunities and challenges in the paid media landscape. Feel free to reach out.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-10 mb-12">
+                    <a href="mailto:Youneschougui@icloud.com" class="flex items-center space-x-3 hover:text-sky-400 transition-colors">
+                        <i data-lucide="mail" class="w-6 h-6"></i>
+                        <span>Youneschougui@icloud.com</span>
+                    </a>
+                    <a href="tel:+447939401398" class="flex items-center space-x-3 hover:text-sky-400 transition-colors">
+                        <i data-lucide="phone" class="w-6 h-6"></i>
+                        <span>+44 7939 401398</span>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 hover:text-sky-400 transition-colors">
+                        <i data-lucide="linkedin" class="w-6 h-6"></i>
+                        <span>LinkedIn Profile</span>
+                    </a>
+                </div>
+                <p class="text-slate-400 text-sm">&copy; 2024. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Lucide Icons
+            lucide.createIcons();
+
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // --- Scroll-triggered Animations ---
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                         // Initialize charts when their section becomes visible
+                        const canvases = entry.target.querySelectorAll('canvas');
+                        canvases.forEach(canvas => {
+                            const canvasId = canvas.id;
+                            if (canvasId && !Chart.getChart(canvasId)) {
+                                switch(canvasId) {
+                                    case 'cplChart': initCplChart(); break;
+                                    case 'funnelChart': initFunnelChart(); break;
+                                    case 'trafficChart': initTrafficChart(); break;
+                                    case 'channelMixChart': initChannelMixChart(); break;
+                                    case 'growthChart': initGrowthChart(); break;
+                                }
+                            }
+                        });
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // --- Chart.js Initializations ---
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#475569' // slate-600
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: '#475569' },
+                        grid: { color: '#e2e8f0' } // slate-200
+                    },
+                    x: {
+                        ticks: { color: '#475569' },
+                        grid: { color: '#e2e8f0' }
+                    }
+                }
+            };
+            
+            // Case Study 1: CPL Chart
+            function initCplChart() {
+                const ctx = document.getElementById('cplChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['France', 'Belgium', 'Italy', 'Spain'],
+                        datasets: [{
+                            label: 'CPL Before (£)',
+                            data: [85, 92, 78, 88],
+                            backgroundColor: 'rgba(100, 116, 139, 0.6)', // slate-500
+                            borderColor: 'rgba(100, 116, 139, 1)',
+                            borderWidth: 1
+                        }, {
+                            label: 'CPL After (£)',
+                            data: [68, 75, 62, 71],
+                            backgroundColor: 'rgba(14, 165, 233, 0.6)', // sky-500
+                            borderColor: 'rgba(14, 165, 233, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: { ...chartOptions, plugins: { ...chartOptions.plugins, title: { display: true, text: 'Cost Per Lead (CPL) Reduction', color: '#1e293b', font: {size: 16} } } }
+                });
+            }
+
+            // Case Study 1: Funnel Chart
+            function initFunnelChart() {
+                const ctx = document.getElementById('funnelChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Clicks', 'Leads', 'MQLs', 'Opportunities'],
+                        datasets: [{
+                            label: 'Conversion Funnel',
+                            data: [10000, 1200, 480, 180],
+                             backgroundColor: [
+                                'rgba(14, 165, 233, 0.8)',
+                                'rgba(14, 165, 233, 0.6)',
+                                'rgba(14, 165, 233, 0.4)',
+                                'rgba(14, 165, 233, 0.2)'
+                            ],
+                            borderColor: 'rgba(14, 165, 233, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: { ...chartOptions, indexAxis: 'y', plugins: { ...chartOptions.plugins, title: { display: true, text: 'Lead-to-Opportunity Funnel', color: '#1e293b', font: {size: 16} } } }
+                });
+            }
+
+            // Case Study 2: Traffic Growth Chart
+            function initTrafficChart() {
+                const ctx = document.getElementById('trafficChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Website Traffic',
+                            data: [5000, 5200, 5500, 5800, 6200, 6500],
+                            fill: true,
+                            borderColor: 'rgba(14, 165, 233, 1)',
+                            backgroundColor: 'rgba(14, 165, 233, 0.1)',
+                            tension: 0.3
+                        }]
+                    },
+                    options: { ...chartOptions, plugins: { ...chartOptions.plugins, title: { display: true, text: 'Website Traffic Growth (+30%)', color: '#1e293b', font: {size: 16} } } }
+                });
+            }
+
+            // Case Study 2: Channel Mix Chart
+            function initChannelMixChart() {
+                 const ctx = document.getElementById('channelMixChart').getContext('2d');
+                 new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['SEO', 'PPC', 'Social Media', 'Email'],
+                        datasets: [{
+                            label: 'Marketing Channel Mix',
+                            data: [40, 25, 20, 15],
+                            backgroundColor: [
+                                'rgba(14, 165, 233, 0.8)',
+                                'rgba(56, 189, 248, 0.8)',
+                                'rgba(125, 211, 252, 0.8)',
+                                'rgba(186, 230, 253, 0.8)'
+                            ],
+                            borderColor: '#ffffff',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: true, plugins: { ...chartOptions.plugins, title: { display: true, text: 'Marketing Channel Mix', color: '#1e293b', font: {size: 16} } } }
+                });
+            }
+
+            // Case Study 3: Follower & Engagement Growth
+            function initGrowthChart() {
+                const ctx = document.getElementById('growthChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            type: 'line',
+                            label: 'Follower Growth (%)',
+                            data: [5, 10, 15, 22, 28, 35],
+                            borderColor: 'rgba(14, 165, 233, 1)',
+                            tension: 0.3,
+                            yAxisID: 'y1',
+                        }, {
+                            type: 'bar',
+                            label: 'Engagement Rate (%)',
+                            data: [2.5, 2.8, 3.2, 3.5, 3.9, 4.1],
+                             backgroundColor: 'rgba(125, 211, 252, 0.6)',
+                             yAxisID: 'y',
+                        }]
+                    },
+                    options: {
+                        ...chartOptions,
+                        plugins: { ...chartOptions.plugins, title: { display: true, text: 'Follower & Engagement Growth', color: '#1e293b', font: {size: 16} } },
+                        scales: {
+                            y: {
+                                type: 'linear',
+                                display: true,
+                                position: 'left',
+                                title: { display: true, text: 'Engagement Rate (%)', color: '#475569' }
+                            },
+                            y1: {
+                                type: 'linear',
+                                display: true,
+                                position: 'right',
+                                title: { display: true, text: 'Follower Growth (%)', color: '#475569' },
+                                grid: {
+                                    drawOnChartArea: false, 
+                                },
+                            },
+                        },
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
